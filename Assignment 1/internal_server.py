@@ -4,7 +4,6 @@ import sys
 import time
 import signal
 import numpy as np
-import manager
 from numpy import linalg
 from flask import Flask
 from flask import request
@@ -45,7 +44,7 @@ def dummy_op():
     # which case, the client should invoke autoscale with the
     # appropriate strategy
     
-    return 'Welcome to Assignment 1 Server: dummy_op! took %s time units' %(end_time - start_time)
+    return 'Welcome to Assignment 1 Server: dummy_op completed'
 
 if __name__ == '__main__':
     app.run()

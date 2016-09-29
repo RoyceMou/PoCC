@@ -17,7 +17,7 @@ def spawn_t2():
     files = ['default.pem', 'setup.sh', 'server.py', 'internal_setup.sh', 'internal_server.py']
     copy_cmd = 'scp -o StrictHostKeyChecking=no -i default.pem {0} {1}:~'.format(' '.join(files), target)
     # setup_cmd = 'ssh -n -f -i default.pem {0} "sh -c \'nohup ./setup.sh > /dev/null 2>&1 &\'"'.format(target)
-    setup_cmd = 'ssh -n -f -i default.pem {0} "sh -c \'nohup ./setup.sh > /dev/null 2>&1 &\'"'.format(target)
+    setup_cmd = 'ssh -n -f -i default.pem {0} "sh -c \'nohup bash setup.sh > /dev/null 2>&1 &\'"'.format(target)
     # setup_cmd = 'ssh -i default.pem {0} ~/setup.sh'.format(target)
 
     time.sleep(20)                          # wait for ssh server to start

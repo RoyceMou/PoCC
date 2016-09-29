@@ -10,7 +10,8 @@ from flask import request
 
 app = Flask(__name__)
 
-internal_servers = []
+# internal_servers = []
+internal_servers = ['10.10.12.11']
 policy = None
 ratio = 1
 count = 0   # represents the number of times that the second server has been chosen
@@ -32,12 +33,12 @@ def extend():
 
         files = ['internal_server.py', 'internal_setup.sh']
         copy_cmd = 'scp -o StrictHostKeyChecking=no -i default.pem {0} {1}:~'.format(' '.join(files), target)
-        setup_cmd = 'ssh -n -f -i default.pem {0} "sh -c \'nohup ./internal_setup.sh > /dev/null 2>&1 &\'"'.format(target)
+        setup_cmd = 'ssh -n -f -i default.pem {0} "sh -c \'nohup bash internal_setup.sh > /dev/null 2>&1 &\'"'.format(target)
 
         time.sleep(20)                          # wait for ssh server to start
         subprocess.call(copy_cmd.split())       # copy files
         subprocess.call(setup_cmd, shell=True)  # setup vm
-        time.sleep(120)                          # wait for web server to start
+        time.sleep(120)                         # wait for web server to start
         return 'Added internal server: {0}'.format(ip)
     else:
         return 't3_addr unspecified.'
@@ -63,7 +64,8 @@ def select_server():
 def dummy_op():
 
     print 'Received request'
-    print 'profile', profile
+    print 'policy', policy
+    print 'internal_servers', internal_servers
 
     ip = select_server()
 
