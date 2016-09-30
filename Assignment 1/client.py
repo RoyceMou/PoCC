@@ -127,9 +127,9 @@ def main():
         
     plt.plot(x_axis,y_axis)
     plt.ylabel('Response time')
-    plt.title('Time to Respond to Requests')
-    plt.show()
+    plt.title('Time to Respond to Requests')    
     plt.savefig('ResponseTime.png')
+    plt.show()
     
 
     # # sending a different kind of request. Here we send the autoscale
