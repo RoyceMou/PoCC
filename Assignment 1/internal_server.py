@@ -34,7 +34,7 @@ def dummy_op():
     # I tried 5000x5000 but it seemed like it was never ending :-) so I gave up
     # I think a 5 sec resp time is good enough. With the machine getting loaded
     # the resp time should shoot up for our client to maybe double what we see.
-    arr = np.random.random((1600,1600))
+    arr = np.random.random((2000,2000))
     arr_inv = linalg.inv(arr)
     
         # @@@ NOTE @@@
