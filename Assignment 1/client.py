@@ -83,9 +83,10 @@ def main():
     print 'Sending request for the dummy op {0} times'.format(num_times)
     for i in range(1, num_times):
         time_elapsed = request(conn, '/dummy_op')
-        print time_elapsed
+        print time_elapsedi
         average += time_elapsed
-        x_axis.append(i)
+        x_axis.append(xcounter)
+        xcounter++
         y_axis.append(time_elapsed)
     average /= num_times
 
