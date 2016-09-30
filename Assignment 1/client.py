@@ -34,6 +34,15 @@ def spawn_t3():
 
     return server, ip
 
+def request(connection, path, display_response=False):
+    start_time = time.time()
+    connection.request('GET', path)
+    end_time = time.time()
+    response = connection.getresponse().read()
+    if display_response:
+        print response
+    return end_time - start_time
+
 # main: In this sample code, we send a few requests:
 # first a simple http message to the web server's main page and
 # then the dummy_op request multiple times, an autoscale request with
@@ -63,9 +72,7 @@ def main():
 
     print 'Connecting to tier 2 server: {0}'.format(ip_t2)
     conn = httplib.HTTPConnection(ip_t2, PORT)
-    conn.request('GET', '/extend?t3_addr={0}'.format(ip_t3))
-    resp = conn.getresponse().read()
-    print resp
+    request(conn, '/extend?t3_addr={0}'.format(ip_t3))
 
     # TODO: works until here. we need to configure the server to work for the dummy op
     x_axis = []
@@ -75,18 +82,12 @@ def main():
 	xcounter = 1
     print 'Sending request for the dummy op {0} times'.format(num_times)
     for i in range(1, num_times):
-        start_time = time.time()
-        conn.request('GET', '/dummy_op')
-        resp = conn.getresponse().read()
-        print resp
-        end_time = time.time()
-        time_elapsed = end_time - start_time
+        time_elapsed = request(conn, '/dummy_op')
         print time_elapsed
-        average = average + time_elapsed
-        x_axis.append(xcounter)
-        xcounter++
+        average += time_elapsed
+        x_axis.append(i)
         y_axis.append(time_elapsed)
-    average = average/num_times
+    average /= num_times
 
     # print 'Increasing load on the VM'
     # conn.request('GET', '/lookbusy')
@@ -94,12 +95,7 @@ def main():
 	
     time_elapsed = 0
     while time_elapsed <= (average*1.2):
-        start_time = time.time()
-        conn.request('GET', '/dummy_op')
-        resp = conn.getresponse().read()
-        print resp
-        end_time = time.time()
-        time_elapsed = end_time - start_time
+        time_elapsed = request(conn, '/dummy_op')
         print time_elapsed
         x_axis.append(xcounter)
         xcounter++
@@ -113,12 +109,7 @@ def main():
     
     print 'Sending request for the dummy op {0} times'.format(num_times)
     for i in range(1, num_times):
-        start_time = time.time()
-        conn.request('GET', '/dummy_op')
-        resp = conn.getresponse().read()
-        print resp
-        end_time = time.time()
-        time_elapsed = end_time - start_time
+        time_elapsed = request(conn, '/dummy_op')
         print time_elapsed
         x_axis.append(xcounter)
         xcounter++
