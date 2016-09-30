@@ -6,6 +6,8 @@ import manager
 import time
 import subprocess
 import random
+import matplotlib.pyplot as plt
+plt.figure
 
 PORT = '8080'
 
@@ -17,7 +19,7 @@ def spawn_t2():
     files = ['default.pem', 'setup.sh', 'server.py', 'internal_setup.sh', 'internal_server.py']
     copy_cmd = 'scp -o StrictHostKeyChecking=no -i default.pem {0} {1}:~'.format(' '.join(files), target)
     # setup_cmd = 'ssh -n -f -i default.pem {0} "sh -c \'nohup ./setup.sh > /dev/null 2>&1 &\'"'.format(target)
-    setup_cmd = 'ssh -n -f -i default.pem {0} "sh -c \'nohup ./setup.sh > /dev/null 2>&1 &\'"'.format(target)
+    setup_cmd = 'ssh -n -f -i default.pem {0} "sh -c \'nohup bash setup.sh > /dev/null 2>&1 &\'"'.format(target)
     # setup_cmd = 'ssh -i default.pem {0} ~/setup.sh'.format(target)
 
     time.sleep(20)                          # wait for ssh server to start
@@ -66,17 +68,21 @@ def main():
     print resp
 
     # TODO: works until here. we need to configure the server to work for the dummy op
-    
-    # num_times = 100
-    # print 'Sending request for the dummy op {0} times'.format(num_times)
-    # for i in range(1, num_times):
-    #     start_time = time.time()
-    #     conn.request('GET', '/dummy_op')
-    #     resp = conn.getresponse().read()
-    #     print resp
-    #     end_time = time.time()
-    # time_elapsed = end_time - start_time
-    # print time_elapsed
+    x_axis = []
+	y_axis = []
+    num_times = 100
+    print 'Sending request for the dummy op {0} times'.format(num_times)
+    for i in range(1, num_times):
+        start_time = time.time()
+        conn.request('GET', '/dummy_op')
+        resp = conn.getresponse().read()
+        print resp
+        end_time = time.time()
+		time_elapsed = end_time - start_time
+		print time_elapsed
+		x_axis.append(i)
+		y_axis.append(time_elapsed)
+		
 
     # print 'Increasing load on the VM'
     # conn.request('GET', '/lookbusy')
@@ -87,6 +93,25 @@ def main():
 
     # print 'Sending request to autoscale with PD'
     # conn.request('GET', '/autoscale?lb=PD&ratio=1:4')
+	
+    print 'Sending request for the dummy op {0} times'.format(num_times)
+    for i in range(1, num_times):
+        start_time = time.time()
+        conn.request('GET', '/dummy_op')
+        resp = conn.getresponse().read()
+        print resp
+        end_time = time.time()
+		time_elapsed = end_time - start_time
+		print time_elapsed
+		x_axis.append(i)
+		y_axis.append(time_elapsed)
+		
+	plt.plot(x_axis,y_axis)
+	plt.ylabel("Response time")
+	plt.title("Time to Respond to Requests")
+	plt.show()
+	plt.savefig("ResponseTime.png")
+	
 
     # # sending a different kind of request. Here we send the autoscale
     # # request.

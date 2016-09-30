@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 sudo apt-get update									# update packages
 echo y | sudo apt-get install python-dev python-pip	# install python pip
