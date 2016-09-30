@@ -16,7 +16,7 @@ def spawn_t2():
     ip = manager.get_ip(server, ip_type='floating')
     target = '{0}@{1}'.format('ubuntu', ip)
     
-    files = ['default.pem', 'setup.sh', 'server.py', 'internal_setup.sh', 'internal_server.py']
+    files = ['default.pem', 'setup.sh', 'server.py', 'internal_setup.sh', 'internal_server.py',lookbusy.tar.gz]
     copy_cmd = 'scp -o StrictHostKeyChecking=no -i default.pem {0} {1}:~'.format(' '.join(files), target)
     # setup_cmd = 'ssh -n -f -i default.pem {0} "sh -c \'nohup ./setup.sh > /dev/null 2>&1 &\'"'.format(target)
     setup_cmd = 'ssh -n -f -i default.pem {0} "sh -c \'nohup bash setup.sh > /dev/null 2>&1 &\'"'.format(target)
