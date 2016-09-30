@@ -16,9 +16,9 @@ def spawn_t2():
     ip = manager.get_ip(server, ip_type='floating')
     target = '{0}@{1}'.format('ubuntu', ip)
     
-    files = ['default.pem', 'setup.sh', 'server.py', 'internal_setup.sh', 'internal_server.py',lookbusy.tar.gz]
+    files = ['default.pem', 'setup.sh', 'server.py', 'internal_setup.sh', 'internal_server.py', 'lookbusy.tar.gz']
     copy_cmd = 'scp -o StrictHostKeyChecking=no -i default.pem {0} {1}:~'.format(' '.join(files), target)
-    # setup_cmd = 'ssh -n -f -i default.pem {0} "sh -c \'nohup ./setup.sh > /dev/null 2>&1 &\'"'.format(target)
+    # setup_cmd = 'ssh -n -f -i default.pem {0} 'sh -c \'nohup ./setup.sh > /dev/null 2>&1 &\'''.format(target)
     setup_cmd = 'ssh -n -f -i default.pem {0} "sh -c \'nohup bash setup.sh > /dev/null 2>&1 &\'"'.format(target)
     # setup_cmd = 'ssh -i default.pem {0} ~/setup.sh'.format(target)
 
@@ -34,14 +34,17 @@ def spawn_t3():
 
     return server, ip
 
-def request(connection, path, display_response=False):
+def request(connection, path, display_response=False, display_time=False):
     start_time = time.time()
     connection.request('GET', path)
     end_time = time.time()
     response = connection.getresponse().read()
     if display_response:
-        print response
-    return end_time - start_time
+        print 'Response from server:', response
+    time_elapsed = end_time - start_time
+    if display_time:
+        print 'Connection request took {0} seconds'.format(time_elapsed)
+    return time_elapsed
 
 # main: In this sample code, we send a few requests:
 # first a simple http message to the web server's main page and
@@ -72,6 +75,8 @@ def main():
 
     print 'Connecting to tier 2 server: {0}'.format(ip_t2)
     conn = httplib.HTTPConnection(ip_t2, PORT)
+
+    print 'Extending internal servers'
     request(conn, '/extend?t3_addr={0}'.format(ip_t3))
 
     # TODO: works until here. we need to configure the server to work for the dummy op
@@ -82,28 +87,33 @@ def main():
 	xcounter = 1
     print 'Sending request for the dummy op {0} times'.format(num_times)
     for i in range(1, num_times):
-        time_elapsed = request(conn, '/dummy_op')
-        print time_elapsedi
+        time_elapsed = request(conn, '/dummy_op', display_time=True)
         average += time_elapsed
         x_axis.append(xcounter)
-        xcounter++
+        xcounter += 1
         y_axis.append(time_elapsed)
     average /= num_times
 
-    # print 'Increasing load on the VM'
-    # conn.request('GET', '/lookbusy')
-    # resp = conn.getresponse().read()
+    print 'Increasing load on the VM'
+    request(conn, '/lookbusy', display_response=True)
 	
+    print 'Testing new response speed'
     time_elapsed = 0
-    while time_elapsed <= (average*1.2):
+    while time_elapsed <=  average * 1.2:
         time_elapsed = request(conn, '/dummy_op')
-        print time_elapsed
         x_axis.append(xcounter)
-        xcounter++
+        xcounter += 1
         y_axis.append(time_elapsed)
+    print 'New response speed over 20% of previous average'
 
-    # print 'Sending request to autoscale with RR'
-    # conn.request('GET', '/autoscale?lb=RR')
+    print 'Creating new tier 3 server'
+    server_t3_1, ip_t3_1 = spawn_t3()
+
+    print 'Extending internal servers'
+    request(conn, '/extend?t3_addr={0}'.format(ip_t3_1))
+
+    print 'Sending request to autoscale with round robin policy'
+    request(conn, '/autoscale?lb=RR', display_response=True)
 
     # print 'Sending request to autoscale with PD'
     # conn.request('GET', '/autoscale?lb=PD&ratio=1:4')
@@ -111,16 +121,15 @@ def main():
     print 'Sending request for the dummy op {0} times'.format(num_times)
     for i in range(1, num_times):
         time_elapsed = request(conn, '/dummy_op')
-        print time_elapsed
         x_axis.append(xcounter)
-        xcounter++
+        xcounter += 1
         y_axis.append(time_elapsed)
         
     plt.plot(x_axis,y_axis)
-    plt.ylabel("Response time")
-    plt.title("Time to Respond to Requests")
+    plt.ylabel('Response time')
+    plt.title('Time to Respond to Requests')
     plt.show()
-    plt.savefig("ResponseTime.png")
+    plt.savefig('ResponseTime.png')
     
 
     # # sending a different kind of request. Here we send the autoscale

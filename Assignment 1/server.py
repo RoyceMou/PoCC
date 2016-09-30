@@ -31,7 +31,7 @@ def extend():
 
         target = '{0}@{1}'.format('ubuntu', ip)
 
-        files = ['internal_server.py', 'internal_setup.sh',lookbusy.tar.gz]
+        files = ['internal_server.py', 'internal_setup.sh', 'lookbusy.tar.gz']
         copy_cmd = 'scp -o StrictHostKeyChecking=no -i default.pem {0} {1}:~'.format(' '.join(files), target)
         setup_cmd = 'ssh -n -f -i default.pem {0} "sh -c \'nohup bash internal_setup.sh > /dev/null 2>&1 &\'"'.format(target)
 
