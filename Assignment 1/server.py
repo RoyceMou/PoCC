@@ -63,7 +63,7 @@ def select_server():
 def dummy_op():
 
     print 'Received request'
-    print 'profile', profile
+    print 'policy', policy
 
     ip = select_server()
 
