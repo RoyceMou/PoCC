@@ -84,7 +84,7 @@ def main():
     y_axis = []
     num_times = 100
     average = 0
-	xcounter = 1
+    xcounter = 1
     print 'Sending request for the dummy op {0} times'.format(num_times)
     for i in range(1, num_times):
         time_elapsed = request(conn, '/dummy_op', display_time=True)
@@ -96,7 +96,7 @@ def main():
 
     print 'Increasing load on the VM'
     request(conn, '/lookbusy', display_response=True)
-	
+    
     print 'Testing new response speed'
     time_elapsed = 0
     while time_elapsed <=  average * 1.2:
