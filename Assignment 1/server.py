@@ -116,7 +116,10 @@ def autoscale():
 def lookbusy():
     if len(internal_servers) < 1:
         return 'No internal servers found.'
-    return
+    target = '{0}@{1}'.format('ubuntu', internal_servers[0])
+    start_lookbusy = 'ssh -i default.pem {0} lookbusy -c 99 -r fixed -m 1gb -d 1gb'.format(target)
+    subprocess.call(start_lookbusy, shell=True)  # setup vm
+    return 'Lookbusy started on {0}'.format(internal_servers[0])
 
 
 # def cleanup(signal, frame):
