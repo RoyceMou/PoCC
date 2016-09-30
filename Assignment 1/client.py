@@ -69,7 +69,7 @@ def main():
 
     # TODO: works until here. we need to configure the server to work for the dummy op
     x_axis = []
-	y_axis = []
+    y_axis = []
     num_times = 100
     print 'Sending request for the dummy op {0} times'.format(num_times)
     for i in range(1, num_times):
@@ -78,11 +78,11 @@ def main():
         resp = conn.getresponse().read()
         print resp
         end_time = time.time()
-		time_elapsed = end_time - start_time
-		print time_elapsed
-		x_axis.append(i)
-		y_axis.append(time_elapsed)
-		
+        time_elapsed = end_time - start_time
+        print time_elapsed
+        x_axis.append(i)
+        y_axis.append(time_elapsed)
+        
 
     # print 'Increasing load on the VM'
     # conn.request('GET', '/lookbusy')
@@ -93,7 +93,7 @@ def main():
 
     # print 'Sending request to autoscale with PD'
     # conn.request('GET', '/autoscale?lb=PD&ratio=1:4')
-	
+    
     print 'Sending request for the dummy op {0} times'.format(num_times)
     for i in range(1, num_times):
         start_time = time.time()
@@ -101,17 +101,17 @@ def main():
         resp = conn.getresponse().read()
         print resp
         end_time = time.time()
-		time_elapsed = end_time - start_time
-		print time_elapsed
-		x_axis.append(i)
-		y_axis.append(time_elapsed)
-		
-	plt.plot(x_axis,y_axis)
-	plt.ylabel("Response time")
-	plt.title("Time to Respond to Requests")
-	plt.show()
-	plt.savefig("ResponseTime.png")
-	
+        time_elapsed = end_time - start_time
+        print time_elapsed
+        x_axis.append(i)
+        y_axis.append(time_elapsed)
+        
+    plt.plot(x_axis,y_axis)
+    plt.ylabel("Response time")
+    plt.title("Time to Respond to Requests")
+    plt.show()
+    plt.savefig("ResponseTime.png")
+    
 
     # # sending a different kind of request. Here we send the autoscale
     # # request.
