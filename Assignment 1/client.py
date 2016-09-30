@@ -72,6 +72,7 @@ def main():
     y_axis = []
     num_times = 100
     average = 0
+	xcounter = 1
     print 'Sending request for the dummy op {0} times'.format(num_times)
     for i in range(1, num_times):
         start_time = time.time()
@@ -82,7 +83,8 @@ def main():
         time_elapsed = end_time - start_time
         print time_elapsed
         average = average + time_elapsed
-        x_axis.append(i)
+        x_axis.append(xcounter)
+        xcounter++
         y_axis.append(time_elapsed)
     average = average/num_times
 
@@ -99,7 +101,8 @@ def main():
         end_time = time.time()
         time_elapsed = end_time - start_time
         print time_elapsed
-        x_axis.append(i)
+        x_axis.append(xcounter)
+        xcounter++
         y_axis.append(time_elapsed)
 
     # print 'Sending request to autoscale with RR'
@@ -117,7 +120,8 @@ def main():
         end_time = time.time()
         time_elapsed = end_time - start_time
         print time_elapsed
-        x_axis.append(i)
+        x_axis.append(xcounter)
+        xcounter++
         y_axis.append(time_elapsed)
         
     plt.plot(x_axis,y_axis)
