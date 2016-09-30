@@ -36,9 +36,9 @@ def spawn_t3():
 
 def request(connection, path, display_response=False, display_time=False):
     start_time = time.time()
-    connection.request('GET', path)
-    end_time = time.time()
+    connection.request('GET', path)    
     response = connection.getresponse().read()
+    end_time = time.time()
     if display_response:
         print 'Response from server:', response
     time_elapsed = end_time - start_time
