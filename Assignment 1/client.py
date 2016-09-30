@@ -7,7 +7,7 @@ import time
 import subprocess
 import random
 import matplotlib.pyplot as plt
-plt.figure
+plt.figure()
 
 PORT = '8080'
 
