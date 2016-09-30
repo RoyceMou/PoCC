@@ -8,6 +8,8 @@ The Nova interface is used in manager.py.<br>
 The LookBusy zip is named lookbusy.tar.gz.<br>
 
 To run the programs (which are not yet fully functional):<br>
-1) Run your .openrc.sh file to export your openstack credentials into the environment<br>
-2) Copy your private key to access the VMs (the source code references default.pem, so you may want to change either the name or the reference)<br>
-3) Run ./run.sh
+1) Run sudo pip install matplotlib
+2) Run sudo apt-get install python-tk
+3) Run your .openrc.sh file to export your openstack credentials into the environment<br>
+4) Copy your private key to access the VMs (the source code references default.pem, so you may want to change either the name or the reference)<br>
+5) Run ./run.sh
