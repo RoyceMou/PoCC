@@ -71,6 +71,7 @@ def main():
     x_axis = []
     y_axis = []
     num_times = 100
+	average = 0
     print 'Sending request for the dummy op {0} times'.format(num_times)
     for i in range(1, num_times):
         start_time = time.time()
@@ -80,13 +81,26 @@ def main():
         end_time = time.time()
         time_elapsed = end_time - start_time
         print time_elapsed
+		average = average + time_elapsed
         x_axis.append(i)
         y_axis.append(time_elapsed)
-        
+    average = average/num_times
 
     # print 'Increasing load on the VM'
     # conn.request('GET', '/lookbusy')
     # resp = conn.getresponse().read()
+	
+	time_elapsed = 0
+	while time_elapsed <= (average*1.2):
+        start_time = time.time()
+        conn.request('GET', '/dummy_op')
+        resp = conn.getresponse().read()
+        print resp
+        end_time = time.time()
+        time_elapsed = end_time - start_time
+        print time_elapsed
+        x_axis.append(i)
+        y_axis.append(time_elapsed)
 
     # print 'Sending request to autoscale with RR'
     # conn.request('GET', '/autoscale?lb=RR')
