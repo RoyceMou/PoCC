@@ -90,7 +90,7 @@ def main():
     # conn.request('GET', '/lookbusy')
     # resp = conn.getresponse().read()
 	
-	time_elapsed = 0
+    time_elapsed = 0
     while time_elapsed <= (average*1.2):
         start_time = time.time()
         conn.request('GET', '/dummy_op')
