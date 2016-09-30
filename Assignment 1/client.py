@@ -100,7 +100,7 @@ def main():
     print 'Testing new response speed'
     time_elapsed = 0
     while time_elapsed <=  average * 1.2:
-        time_elapsed = request(conn, '/dummy_op')
+        time_elapsed = request(conn, '/dummy_op', display_time=True)
         x_axis.append(xcounter)
         xcounter += 1
         y_axis.append(time_elapsed)
@@ -115,12 +115,12 @@ def main():
     print 'Sending request to autoscale with round robin policy'
     request(conn, '/autoscale?lb=RR', display_response=True)
 
-    # print 'Sending request to autoscale with PD'
-    # conn.request('GET', '/autoscale?lb=PD&ratio=1:4')
-    
+    print 'Sending request to autoscale with round robin policy'
+    request(conn, '/autoscale?lb=PD&ratio=1:4', display_response=True)
+
     print 'Sending request for the dummy op {0} times'.format(num_times)
     for i in range(1, num_times):
-        time_elapsed = request(conn, '/dummy_op')
+        time_elapsed = request(conn, '/dummy_op', display_time=True)
         x_axis.append(xcounter)
         xcounter += 1
         y_axis.append(time_elapsed)
@@ -140,7 +140,9 @@ def main():
     # # in this autoscale request so the client-facing server now has the
     # # knowledge of the 2nd VM in the 3rd tier.
     
-    # server.delete()
+    server_t2.delete()
+    server_t3.delete()
+    server_t3_1.delete()
     
 # invoke main
 if __name__ == '__main__':

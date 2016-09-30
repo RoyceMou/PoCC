@@ -9,5 +9,6 @@ The LookBusy zip is named lookbusy.tar.gz.<br>
 
 To run the programs (which are not yet fully functional):<br>
 1) Run your .openrc.sh file to export your openstack credentials into the environment<br>
-2) Copy your private key to access the VMs (the source code references default.pem, so you may want to change either the name or the reference)<br>
+2) Copy your private key to access the VMs.<br>
+   The simplest way to make this work is to rename your private key to 'default.pem' and rename the constant 'KEY_NAME' in manager.py to the name of your private key.<br>
 3) Run ./run.sh

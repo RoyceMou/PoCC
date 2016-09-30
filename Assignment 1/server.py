@@ -11,7 +11,7 @@ from flask import request
 app = Flask(__name__)
 
 # internal_servers = []
-internal_servers = ['10.10.12.11']
+internal_servers = []
 policy = None
 ratio = 1
 count = 0   # represents the number of times that the second server has been chosen
