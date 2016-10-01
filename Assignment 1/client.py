@@ -88,6 +88,7 @@ def main():
     print 'Sending request for the dummy op {0} times'.format(num_times)
     for i in range(1, num_times):
         time_elapsed = request(conn, '/dummy_op', display_time=True)
+        print 'Time elapsed:', time_elapsed
         average += time_elapsed
         x_axis.append(xcounter)
         xcounter += 1
@@ -101,6 +102,7 @@ def main():
     time_elapsed = 0
     while time_elapsed <=  average * 1.2:
         time_elapsed = request(conn, '/dummy_op', display_time=True)
+        print 'Time elapsed:', time_elapsed
         x_axis.append(xcounter)
         xcounter += 1
         y_axis.append(time_elapsed)
@@ -112,8 +114,8 @@ def main():
     print 'Extending internal servers'
     request(conn, '/extend?t3_addr={0}'.format(ip_t3_1))
 
-    print 'Sending request to autoscale with round robin policy'
-    request(conn, '/autoscale?lb=RR', display_response=True)
+    # print 'Sending request to autoscale with round robin policy'
+    # request(conn, '/autoscale?lb=RR', display_response=True)
 
     print 'Sending request to autoscale with round robin policy'
     request(conn, '/autoscale?lb=PD&ratio=1:4', display_response=True)
@@ -121,6 +123,7 @@ def main():
     print 'Sending request for the dummy op {0} times'.format(num_times)
     for i in range(1, num_times):
         time_elapsed = request(conn, '/dummy_op', display_time=True)
+        print 'Time elapsed:', time_elapsed
         x_axis.append(xcounter)
         xcounter += 1
         y_axis.append(time_elapsed)
