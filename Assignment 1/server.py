@@ -73,7 +73,7 @@ def dummy_op():
     conn = httplib.HTTPConnection(ip, PORT)
     conn.request('GET', '/dummy_op')
     resp = conn.getresponse().read()
-    return resp
+    return 'Response from tier 3 server {0}: {1}'.format(ip, resp)
 
 # The following is to handle an incoming request for autoscaling and the
 # suggested policy

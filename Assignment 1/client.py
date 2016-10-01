@@ -87,7 +87,7 @@ def main():
     xcounter = 1
     print 'Sending request for the dummy op {0} times'.format(num_times)
     for i in range(1, num_times):
-        time_elapsed = request(conn, '/dummy_op', display_time=True)
+        time_elapsed = request(conn, '/dummy_op', display_response=True, display_time=True)
         print 'Time elapsed:', time_elapsed
         average += time_elapsed
         x_axis.append(xcounter)
@@ -101,7 +101,7 @@ def main():
     print 'Testing new response speed'
     time_elapsed = 0
     while time_elapsed <=  average * 1.2:
-        time_elapsed = request(conn, '/dummy_op', display_time=True)
+        time_elapsed = request(conn, '/dummy_op', display_response=True, display_time=True)
         print 'Time elapsed:', time_elapsed
         x_axis.append(xcounter)
         xcounter += 1
@@ -122,7 +122,7 @@ def main():
 
     print 'Sending request for the dummy op {0} times'.format(num_times)
     for i in range(1, num_times):
-        time_elapsed = request(conn, '/dummy_op', display_time=True)
+        time_elapsed = request(conn, '/dummy_op', display_response=True, display_time=True)
         print 'Time elapsed:', time_elapsed
         x_axis.append(xcounter)
         xcounter += 1
