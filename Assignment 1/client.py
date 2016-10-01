@@ -82,18 +82,19 @@ def main():
     # TODO: works until here. we need to configure the server to work for the dummy op
     x_axis = []
     y_axis = []
-    num_times = 100
+    num_times = 12
     average = 0
     xcounter = 1
     print 'Sending request for the dummy op {0} times'.format(num_times)
     for i in range(1, num_times):
-        time_elapsed = request(conn, '/dummy_op', display_response=True, display_time=True)
+        time_elapsed = request(conn, '/dummy_op', display_time=True)
         print 'Time elapsed:', time_elapsed
         average += time_elapsed
         x_axis.append(xcounter)
         xcounter += 1
         y_axis.append(time_elapsed)
     average /= num_times
+    print 'Average response times: {0}'.format(average)
 
     print 'Increasing load on the VM'
     request(conn, '/lookbusy', display_response=True)
@@ -101,7 +102,7 @@ def main():
     print 'Testing new response speed'
     time_elapsed = 0
     while time_elapsed <=  average * 1.2:
-        time_elapsed = request(conn, '/dummy_op', display_response=True, display_time=True)
+        time_elapsed = request(conn, '/dummy_op', display_time=True)
         print 'Time elapsed:', time_elapsed
         x_axis.append(xcounter)
         xcounter += 1
@@ -117,12 +118,12 @@ def main():
     # print 'Sending request to autoscale with round robin policy'
     # request(conn, '/autoscale?lb=RR', display_response=True)
 
-    print 'Sending request to autoscale with round robin policy'
+    print 'Sending request to autoscale with proportional dispatch'
     request(conn, '/autoscale?lb=PD&ratio=1:4', display_response=True)
 
     print 'Sending request for the dummy op {0} times'.format(num_times)
     for i in range(1, num_times):
-        time_elapsed = request(conn, '/dummy_op', display_response=True, display_time=True)
+        time_elapsed = request(conn, '/dummy_op', display_time=True)
         print 'Time elapsed:', time_elapsed
         x_axis.append(xcounter)
         xcounter += 1
