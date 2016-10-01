@@ -5,7 +5,7 @@ echo y | sudo apt-get install python-dev python-pip # install python pip
 sudo pip install numpy flask                        # install dependencies
 gunzip lookbusy.tar.gz                              # unpack lookbusy
 tar xvf lookbusy.tar
-cd lookbusy
+cd lookbusy-1.4
 ./configure
 sudo make install
 export FLASK_APP=internal_server.py

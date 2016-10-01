@@ -38,7 +38,7 @@ def extend():
         time.sleep(20)                          # wait for ssh server to start
         subprocess.call(copy_cmd.split())       # copy files
         subprocess.call(setup_cmd, shell=True)  # setup vm
-        time.sleep(120)                         # wait for web server to start
+        time.sleep(420)                         # wait for numpy and web server to start
         return 'Added internal server: {0}'.format(ip)
     else:
         return 't3_addr unspecified.'
@@ -117,7 +117,8 @@ def lookbusy():
     if len(internal_servers) < 1:
         return 'No internal servers found.'
     target = '{0}@{1}'.format('ubuntu', internal_servers[0])
-    start_lookbusy = 'ssh -i default.pem {0} lookbusy -c 99 -r fixed -m 1gb -d 1gb'.format(target)
+    # start_lookbusy = 'ssh -i default.pem {0} lookbusy -c 99 -r fixed -m 500mb -d 1gb'.format(target)
+    start_lookbusy = 'ssh -i default.pem {0} "sh -c \'nohup lookbusy -c 99 -r fixed -m 500mb -d 1gb > /dev/null 2>&1 &\'" '.format(target)
     subprocess.call(start_lookbusy, shell=True)  # setup vm
     return 'Lookbusy started on {0}'.format(internal_servers[0])
 
