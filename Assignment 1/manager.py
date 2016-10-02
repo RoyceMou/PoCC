@@ -9,7 +9,7 @@ IMAGE_NAME = 'ubuntu-14.04'
 FLAVOR_NAME = 'm1.small'
 NETWORK_NAME = 'internal network'
 SECURITY_GROUP_NAME = 'default'
-KEY_NAME = 'peck_ashley'
+KEY_NAME = 'default'
 
 def _get_nova_creds():
     d = {}

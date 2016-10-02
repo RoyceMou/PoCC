@@ -18,12 +18,13 @@ def spawn_t2():
     
     files = ['default.pem', 'setup.sh', 'server.py', 'internal_setup.sh', 'internal_server.py', 'lookbusy.tar.gz']
     copy_cmd = 'scp -o StrictHostKeyChecking=no -i default.pem {0} {1}:~'.format(' '.join(files), target)
-    # setup_cmd = 'ssh -n -f -i default.pem {0} 'sh -c \'nohup ./setup.sh > /dev/null 2>&1 &\'''.format(target)
+    perm_cmd = 'ssh -i default.pem {0} chmod 700 setup.sh server.py'.format(target)
     setup_cmd = 'ssh -n -f -i default.pem {0} "sh -c \'nohup bash setup.sh > /dev/null 2>&1 &\'"'.format(target)
     # setup_cmd = 'ssh -i default.pem {0} ~/setup.sh'.format(target)
 
     time.sleep(20)                          # wait for ssh server to start
     subprocess.call(copy_cmd.split())       # copy files
+    subprocess.call(perm_cmd, shell=True)
     subprocess.call(setup_cmd, shell=True)  # setup vm
     time.sleep(120)                         # wait for web server to start
     return server, ip
