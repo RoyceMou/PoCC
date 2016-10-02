@@ -131,7 +131,8 @@ def main():
         y_axis.append(time_elapsed)
         
     plt.plot(x_axis,y_axis)
-    plt.ylabel('Response time')
+    plt.xlabel('Dummy op number')
+    plt.ylabel('Response time (s)')
     plt.title('Time to Respond to Requests')    
     plt.savefig('ResponseTime.png')
     plt.show()
