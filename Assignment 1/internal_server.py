@@ -34,8 +34,10 @@ def dummy_op():
     # I tried 5000x5000 but it seemed like it was never ending :-) so I gave up
     # I think a 5 sec resp time is good enough. With the machine getting loaded
     # the resp time should shoot up for our client to maybe double what we see.
+    start_time = time.time()
     arr = np.random.random((1200,1200))
     arr_inv = linalg.inv(arr)
+    end_time = time.time()
     
         # @@@ NOTE @@@
     # Here I am returning a message and the time it took.
@@ -44,7 +46,7 @@ def dummy_op():
     # which case, the client should invoke autoscale with the
     # appropriate strategy
     
-    return 'Welcome to Assignment 1 Server: dummy_op completed'
+    return 'dummy_op completed in {0} seconds\n'.format(end_time - start_time)
 
 if __name__ == '__main__':
     app.run()
