@@ -5,7 +5,9 @@ apt-add-repository ppa:ansible/ansible
 apt-get update
 apt-get install -y ansible
 
+# CHANGE CONSTANTS HERE
 export SERVER_IP="129.59.107.80"
+export SSH_PEM="default.pem"
 
 # generate ansible hosts file
 echo -e "[server]\n" >> /etc/ansible/hosts 
@@ -22,6 +24,9 @@ cp /etc/ansible/ansible.cfg ~/.ansible.cfg
 echo -e "[defaults]\nhost_key_checking = false " >> ~/.ansible.cfg
 
 # run server playbook
+
+ssh-agent bash
+ssh-add $SSH_PEM
 ansible-playbook playbook_server.yml
 # ansible-playbook playbook_server.yml --sudo --connection=ssh
 
