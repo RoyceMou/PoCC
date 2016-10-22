@@ -7,7 +7,7 @@ import time
 import subprocess
 import random
 import matplotlib.pyplot as plt
-plt.figure
+plt.figure()
 
 PORT = '8080'
 
@@ -16,14 +16,15 @@ def spawn_t2():
     ip = manager.get_ip(server, ip_type='floating')
     target = '{0}@{1}'.format('ubuntu', ip)
     
-    files = ['default.pem', 'setup.sh', 'server.py', 'internal_setup.sh', 'internal_server.py']
+    files = ['default.pem', 'setup.sh', 'server.py', 'internal_setup.sh', 'internal_server.py', 'lookbusy.tar.gz']
     copy_cmd = 'scp -o StrictHostKeyChecking=no -i default.pem {0} {1}:~'.format(' '.join(files), target)
-    # setup_cmd = 'ssh -n -f -i default.pem {0} "sh -c \'nohup ./setup.sh > /dev/null 2>&1 &\'"'.format(target)
+    perm_cmd = 'ssh -i default.pem {0} chmod 700 setup.sh server.py'.format(target)
     setup_cmd = 'ssh -n -f -i default.pem {0} "sh -c \'nohup bash setup.sh > /dev/null 2>&1 &\'"'.format(target)
     # setup_cmd = 'ssh -i default.pem {0} ~/setup.sh'.format(target)
 
     time.sleep(20)                          # wait for ssh server to start
     subprocess.call(copy_cmd.split())       # copy files
+    subprocess.call(perm_cmd, shell=True)
     subprocess.call(setup_cmd, shell=True)  # setup vm
     time.sleep(120)                         # wait for web server to start
     return server, ip
@@ -33,6 +34,18 @@ def spawn_t3():
     ip = manager.get_ip(server)
 
     return server, ip
+
+def request(connection, path, display_response=False, display_time=False):
+    start_time = time.time()
+    connection.request('GET', path)    
+    response = connection.getresponse().read()
+    end_time = time.time()
+    if display_response:
+        print 'Response from server:', response
+    time_elapsed = end_time - start_time
+    if display_time:
+        print 'Connection request took {0} seconds'.format(time_elapsed)
+    return time_elapsed
 
 # main: In this sample code, we send a few requests:
 # first a simple http message to the web server's main page and
@@ -63,55 +76,67 @@ def main():
 
     print 'Connecting to tier 2 server: {0}'.format(ip_t2)
     conn = httplib.HTTPConnection(ip_t2, PORT)
-    conn.request('GET', '/extend?t3_addr={0}'.format(ip_t3))
-    resp = conn.getresponse().read()
-    print resp
+
+    print 'Extending internal servers'
+    request(conn, '/extend?t3_addr={0}'.format(ip_t3))
 
     # TODO: works until here. we need to configure the server to work for the dummy op
     x_axis = []
-	y_axis = []
-    num_times = 100
+    y_axis = []
+    num_times = 12
+    average = 0
+    xcounter = 1
     print 'Sending request for the dummy op {0} times'.format(num_times)
     for i in range(1, num_times):
-        start_time = time.time()
-        conn.request('GET', '/dummy_op')
-        resp = conn.getresponse().read()
-        print resp
-        end_time = time.time()
-		time_elapsed = end_time - start_time
-		print time_elapsed
-		x_axis.append(i)
-		y_axis.append(time_elapsed)
-		
+        time_elapsed = request(conn, '/dummy_op', display_response=True, display_time=True)
+        print 'Time elapsed:', time_elapsed
+        average += time_elapsed
+        x_axis.append(xcounter)
+        xcounter += 1
+        y_axis.append(time_elapsed)
+    average /= num_times
+    print 'Average response times: {0}'.format(average)
 
-    # print 'Increasing load on the VM'
-    # conn.request('GET', '/lookbusy')
-    # resp = conn.getresponse().read()
+    print 'Increasing load on the VM'
+    request(conn, '/lookbusy', display_response=True)
+    
+    print 'Testing new response speed'
+    time_elapsed = 0
+    while time_elapsed <=  average * 1.2:
+        time_elapsed = request(conn, '/dummy_op', display_response=True, display_time=True)
+        print 'Time elapsed:', time_elapsed
+        x_axis.append(xcounter)
+        xcounter += 1
+        y_axis.append(time_elapsed)
+    print 'New response speed over 20% of previous average'
 
-    # print 'Sending request to autoscale with RR'
-    # conn.request('GET', '/autoscale?lb=RR')
+    print 'Creating new tier 3 server'
+    server_t3_1, ip_t3_1 = spawn_t3()
 
-    # print 'Sending request to autoscale with PD'
-    # conn.request('GET', '/autoscale?lb=PD&ratio=1:4')
-	
+    print 'Extending internal servers'
+    request(conn, '/extend?t3_addr={0}'.format(ip_t3_1))
+
+    # print 'Sending request to autoscale with round robin policy'
+    # request(conn, '/autoscale?lb=RR', display_response=True)
+
+    print 'Sending request to autoscale with proportional dispatch'
+    request(conn, '/autoscale?lb=PD&ratio=1:4', display_response=True)
+
     print 'Sending request for the dummy op {0} times'.format(num_times)
     for i in range(1, num_times):
-        start_time = time.time()
-        conn.request('GET', '/dummy_op')
-        resp = conn.getresponse().read()
-        print resp
-        end_time = time.time()
-		time_elapsed = end_time - start_time
-		print time_elapsed
-		x_axis.append(i)
-		y_axis.append(time_elapsed)
-		
-	plt.plot(x_axis,y_axis)
-	plt.ylabel("Response time")
-	plt.title("Time to Respond to Requests")
-	plt.show()
-	plt.savefig("ResponseTime.png")
-	
+        time_elapsed = request(conn, '/dummy_op', display_response=True, display_time=True)
+        print 'Time elapsed:', time_elapsed
+        x_axis.append(xcounter)
+        xcounter += 1
+        y_axis.append(time_elapsed)
+        
+    plt.plot(x_axis,y_axis)
+    plt.xlabel('Dummy op number')
+    plt.ylabel('Response time (s)')
+    plt.title('Time to Respond to Requests')    
+    plt.savefig('ResponseTime.png')
+    plt.show()
+    
 
     # # sending a different kind of request. Here we send the autoscale
     # # request.
@@ -121,7 +146,9 @@ def main():
     # # in this autoscale request so the client-facing server now has the
     # # knowledge of the 2nd VM in the 3rd tier.
     
-    # server.delete()
+    server_t2.delete()
+    server_t3.delete()
+    server_t3_1.delete()
     
 # invoke main
 if __name__ == '__main__':

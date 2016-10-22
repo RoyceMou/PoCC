@@ -35,10 +35,10 @@ def _create_connection(creds):
 def _generate_server_name(nova):
     names = set(server.name for server in nova.servers.list())
     index = 0
-    name = 'rm_server_{0}'.format(index)
+    name = 'rad_server_{0}'.format(index)
     while name in names:
         index += 1
-        name = 'rm_server_{0}'.format(index)
+        name = 'rad_server_{0}'.format(index)
     print 'New server name generated: {0}'.format(name)
     return name
 

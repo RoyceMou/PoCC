@@ -11,7 +11,7 @@ from flask import request
 app = Flask(__name__)
 
 # internal_servers = []
-internal_servers = ['10.10.12.11']
+internal_servers = []
 policy = None
 ratio = 1
 count = 0   # represents the number of times that the second server has been chosen
@@ -19,10 +19,11 @@ PORT = '8080'
 
 @app.route('/')
 def welcome():
-    return 'Welcome to the 2nd tier server for Assignment 1!'
+    return 'Welcome to the 2nd tier server for Assignment 1!\n'
 
 @app.route('/extend')
 def extend():
+    global internal_servers
     print request.args
     if 't3_addr' in request.args:
         ip = request.args['t3_addr']
@@ -31,21 +32,24 @@ def extend():
 
         target = '{0}@{1}'.format('ubuntu', ip)
 
-        files = ['internal_server.py', 'internal_setup.sh']
+        files = ['internal_server.py', 'internal_setup.sh', 'lookbusy.tar.gz']
         copy_cmd = 'scp -o StrictHostKeyChecking=no -i default.pem {0} {1}:~'.format(' '.join(files), target)
+        perm_cmd = 'ssh -i default.pem {0} chmod 700 internal_setup.sh internal_server.py'.format(target)
         setup_cmd = 'ssh -n -f -i default.pem {0} "sh -c \'nohup bash internal_setup.sh > /dev/null 2>&1 &\'"'.format(target)
 
         time.sleep(20)                          # wait for ssh server to start
         subprocess.call(copy_cmd.split())       # copy files
+        subprocess.call(perm_cmd, shell=True)
         subprocess.call(setup_cmd, shell=True)  # setup vm
-        time.sleep(120)                         # wait for web server to start
-        return 'Added internal server: {0}'.format(ip)
+        time.sleep(420)                         # wait for numpy and web server to start
+        return 'Added internal server: {0}\n'.format(ip)
     else:
-        return 't3_addr unspecified.'
+        return 't3_addr unspecified.\n'
 
 
 # selects the server to send the request to depending on the policy
 def select_server():
+    global count
     if policy is None:
         ip = internal_servers[0]
     else:
@@ -62,7 +66,6 @@ def select_server():
 # balancing strategy
 @app.route('/dummy_op')
 def dummy_op():
-
     print 'Received request'
     print 'policy', policy
 
@@ -75,12 +78,13 @@ def dummy_op():
     conn = httplib.HTTPConnection(ip, PORT)
     conn.request('GET', '/dummy_op')
     resp = conn.getresponse().read()
-    return resp
+    return 'Response from tier 3 server {0}: {1}\n'.format(ip, resp)
 
 # The following is to handle an incoming request for autoscaling and the
 # suggested policy
 @app.route('/autoscale')
 def autoscale():
+    global policy, ratio
     # @@@ NOTE @@@
     # here you should handle the autoscaling policy and take the steps
     # to start a new 3rd tier VM that will run the same code as the other VM.
@@ -95,22 +99,21 @@ def autoscale():
 
     print 'Received request = {0}'.format(request)
     
-    ret_msg = 'Welcome to Assignment 1 Server: autoscale! '
+    ret_msg = 'Autoscale request received.'
     # make sure that the load balancing strategy is mentioned
     if 'lb' in request.args:
         policy = 'RR' if request.args['lb'] == 'RR' else 'PD' if request.args['lb'] == 'PD' else None
-        ret_msg += '{0} policy specified.'
+        ret_msg += ' {0} policy specified.\n'.format(policy)
     else:
-        ret_msg += 'Request must provide at least the lb parameter. '
+        ret_msg += ' Request must provide at least the lb parameter.\n'
 
     if request.args['lb'] == 'PD':
         if 'ratio' in request.args: # expect the ration arg
             ratio = request.args['ratio'].split(':')
             ratio = int(ratio[1]) / int(ratio[0])
-            ret_msg += 'Ratio = 1:{0}'.format(ratio)
+            ret_msg += ' Ratio = 1:{0}\n'.format(ratio)
         else:
-            ret_msg += 'Ratio expected for proportional dispatch'
-        
+            ret_msg += ' Ratio expected for proportional dispatch.\n'
     return ret_msg
 
 
@@ -118,7 +121,11 @@ def autoscale():
 def lookbusy():
     if len(internal_servers) < 1:
         return 'No internal servers found.'
-    return
+    target = '{0}@{1}'.format('ubuntu', internal_servers[0])
+    # start_lookbusy = 'ssh -i default.pem {0} lookbusy -c 99 -r fixed -m 500mb -d 1gb'.format(target)
+    start_lookbusy = 'ssh -i default.pem {0} "sh -c \'nohup lookbusy -c 99 -r fixed -m 500mb -d 1gb > /dev/null 2>&1 &\'"'.format(target)
+    subprocess.call(start_lookbusy, shell=True)  # setup vm
+    return 'Lookbusy started on {0}\n'.format(internal_servers[0])
 
 
 # def cleanup(signal, frame):
