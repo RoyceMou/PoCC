@@ -29,8 +29,8 @@ echo "Ansible Configured"
 # run server playbook
 ssh-agent bash
 ssh-add $SSH_PEM
-chmod 700 playbook_server.yml
-ansible-playbook playbook_server.yml
+# chmod 700 /vagrant/playbook_server.yml
+ansible-playbook /vagrant/playbook_server.yml
 # ansible-playbook playbook_server.yml --sudo --connection=ssh
 
 # run python client
