@@ -1,4 +1,17 @@
 ---
+# Creates a new instance and attaches to a network and passes metadata to
+# the instance
+- os_server:
+       state: present
+       name: vm1
+       image: ubuntu-14.04
+       key_name: ansible_key
+       timeout: 200
+       flavor: 4
+       nics:
+         - net-id: b16b0244-e1b5-4d36-90ff-83a0d87d8682
+         - net-name: another_network
+
 # This playbook will install python on our Horizon Cloud VM
 # Python is needed to run a whole slew of different things. So
 # Python is the first thing we need
