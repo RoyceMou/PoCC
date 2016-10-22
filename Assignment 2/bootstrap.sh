@@ -23,9 +23,9 @@ echo -e "[defaults]\nhost_key_checking = false " >> ~/.ansible.cfg
 
 # run server playbook
 ansible-playbook playbook_server.yml
-# ansible-playbook playbook_server.yml --sudo --remote-user=ubuntu --connection=ssh
+# ansible-playbook playbook_server.yml --sudo --connection=ssh
 
 # run python client
-python client.py $SERVER_IP
+# python client.py $SERVER_IP
 
 # TODO: Is output from client.py stdout?
