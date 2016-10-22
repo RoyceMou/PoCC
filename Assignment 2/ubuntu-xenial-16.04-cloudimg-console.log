@@ -371,4 +371,223 @@ ng root file system ... Begin: Running /scripts/local-top ... done.
 Begin: Running /scripts/local-premount ... Scanning for Btrfs filesystems
 done.
 Warning: fsck not present, so skipping root file system
-[   28.66992
+[   28.669924] EXT4-fs (sda1): mounted filesystem with ordered data mode. Opts: (null)
+done.
+Begin: Running /scripts/local-bottom ... done.
+Begin: Running /scripts/init-bottom ... Warning: overlayroot: debug is busted
+done.
+[   30.678769] random: nonblocking pool is initialized
+[   0.87] systemd[1]: systemd 229 running in system mode. (+PAM +AUDIT +SELINUX +IMA +APPARMOR +SMACK +SYSVINIT +UTMP +LIBCRYPTSETUP +GCRYPT +GNUTLS +ACL +XZ -LZ4 +SECCOMP +BLKID +ELFUTILS +KMOD -IDN)
+[   31.296421] systemd[1]: Detected virtualization oracle.
+[   31.318186] systemd[1]: Detected architecture x86-64.
+
+Welcome to [1mUbuntu 16.04.1 LTS[0m!
+
+[   31.418829] systemd[1]: Set hostname to <ubuntu>.
+[  31.5235] syte[1: Initalin mhi Ifr rdo geror
+
+[   32.212085] systemd[1]: Installed transient /etc/machine-id file.
+[   33.220575] systemd[1]: Listening on udev Control Socket.
+[[0;32m  OK  [0m] Listening on udev Control Socket.
+[ 33338192 sysem1] Ltengn Journal Socket.
+[[0;32m  OK  [0m] Listening on Journal Socket.
+[ 33642]ysem1]Reached targetSw.
+[[0;32m  OK  [0m] Reached target Swap.
+[   34.228055] systemd[1]: Listening on Device-mapper event daemon FIFOs.
+[[0;32m  OK  [0m] Listening on Device-mapper event daemon FIFOs.
+[ 342588] systemd[1]: Listening on udev Kernel oct.
+
+[[0;32m  OK  [0m] Listening on udev Kernel Socket.
+[  3585929 sstem[1 Listening on /dev/initctl Compatibility Name Pe.
+[[0;32m  OK  [0m] Listening on /dev/initctl Compatibility Named Pipe.
+[  39426 systemd[1: iseng  Jrn Ait Socket.
+[[0;32m  OK  [0m] Listening on Journal Audit Socket.
+[   35.455661] systemd[1]: Set up automount Arbitrary Executable File Formats File System Automount Point.
+[[0;32m  OK  [0m] Set up automount Arbitrary Executab...ats File System Automount Point.
+[ 35629] sstmd1]Litening on LVM2 poll daemon socket.
+
+[[0;32m  OK  [0m] Listening on LVM2 poll daemon socket.
+[   35.863911] systemd[1]: Started Forward Password Requests to Wall Directory Watch.
+[[0;32m  OK  [0m] Started Forward Password Requests to Wall Directory Watch.
+[   35.887545] systemd[1]: Reached target Encrypted Volumes.
+[[0;32m  OK  [0m] Reached target Encrypted Volumes.
+[   35.896553] systemd[1]: Listening on Journal Socket (/dev/log).
+[[0;32m  OK  [0m] Listening on Journal Socket (/dev/log).
+[   35.915562] systemd[1]: Listening on LVM2 metadata daemon socket.
+[[0;32m  OK  [0m] Listening on LVM2 metadata daemon socket.
+[   35.918164] systemd[1]: Created slice System Slice.
+[[0;32m  OK  [0m] Created slice System Slice.
+[   35.950082] systemd[1]: Starting Set console keymap...
+         Starting Set console keymap...
+[   35.970565] systemd[1]: Created slice system-serial\x2dgetty.slice.
+[[0;32m  OK  [0m] Created slice system-serial\x2dgetty.slice.
+[   36.058108] systemd[1]: Starting Uncomplicated firewall...
+         Starting Uncomplicated firewall...
+[   36.126681] systemd[1]: Starting Remount Root and Kernel File Systems...
+         Starting Remount Root and Kernel File Systems...
+[   36.177563] EXT4-fs (sda1): re-mounted. Opts: (null)
+[   36.177760] systemd[1]: Mounting POSIX Message Queue File System...
+         Mounting POSIX Message Queue File System...
+[   36.333694] systemd[1]: Starting Nameserver information manager...
+         Starting Nameserver information manager...
+[   36.386170] systemd[1]: Mounting Huge Pages File System...
+         Mounting Huge Pages File System...
+[   36.466115] systemd[1]: Starting Monitoring of LVM2 mirrors, snapshots etc. using dmeventd or progress polling...
+         Starting Monitoring of LVM2 mirrors... dmeventd or progress polling...
+[   36.540689] systemd[1]: Starting Create list of required static device nodes for the current kernel...
+         Starting Create list of required st... nodes for the current kernel...
+[   36.690030] systemd[1]: Mounting Debug File System...
+         Mounting Debug File System...
+[   36.814179] systemd[1]: Starting Load Kernel Modules...
+[   36.853496] Loading iSCI transport class v2.070
+         Starting Load Kernel Modules...
+[   36.975880] iscsi: registered transport (tcp)
+[   37.049713] systemd[1]: Reached target User and Group Name Lookups.
+[[0;32m  OK  [0m] Reached target User and Group Name Lookups.
+[   37.111655] systemd[1]: Created slice User and Session Slice.
+[   37.279]sc: gierd trnsrtis) [[0;32m  OK  [0m] Created slice User and Session Slice.
+[   37.616273] systemd[1]: Listening on Syslog Socket.
+[[0;32m  OK  [0m] Listening on Syslog Socket.
+[   37.706163] systemd[1]: Starting Journal Service...
+         Starting Journal Service...
+[   37.757778] systemd[1]: Reached target Slices.
+[[0;32m  OK  [0m] Reached target Slices.
+[   37.800004] systemd[1]: Mounted POSIX Message Queue File System.
+[[0;32m  OK  [0m] Mounted POSIX Message Queue File System.
+[   37.838040] systemd[1]: Mounted Debug File System.
+[[0;32m  OK  [0m] Mounted Debug File System.
+[   37.873811] systemd[1]: Mounted Huge Pages File System.
+[[0;32m  OK  [0m] Mounted Huge Pages File System.
+[   37.902349] systemd[1]: Started Journal Service.
+[[0;32m  OK  [0m] Started Journal Service.
+[[0;32m  OK  [0m] Started Set console keymap.
+[[0;32m  OK  [0m] Started Uncomplicated firewall.
+[[0;32m  OK  [0m] Started Remount Root and Kernel File Systems.
+[[0;32m  OK  [0m] Started Create list of required sta...ce nodes for the current kernel.
+[[0;32m  OK  [0m] Started Load Kernel Modules.
+[[0;32m  OK  [0m] Started Nameserver information manager.
+[[0;32m  OK  [0m] Started LVM2 metadata daemon.
+         Mounting FUSE Control File System...
+         Starting Apply Kernel Variables...
+         Starting Create Static Device Nodes in /dev...
+         Starting udev Coldplug all Devices...
+         Starting Load/Save Random Seed...
+         Starting Flush Journal to Persistent Storage...
+[[0;32m  OK  [0m] Mounted FUSE Control File System.
+[[0;32m  OK  [0m] Started Apply Kernel Variables.
+[[0;32m  OK  [0m] Started Load/Save Random Seed.
+[[0;32m  OK  [0m] Started udev Coldplug all Devices.
+[[0;32m  OK  [0m] Started Create Static Device Nodes in /dev.
+         Starting udev Kernel Device Manager...
+[[0;32m  OK  [0m] Started Flush Journal to Persistent Storage.
+[[0;32m  OK  [0m] Started Monitoring of LVM2 mirrors,...ng dmeventd or progress polling.
+[[0;32m  OK  [0m] Started udev Kernel Device Manager.
+[[0;32m  OK  [0m] Reached target Local File Systems (Pre).
+[[0;32m  OK  [0m] Reached target Local File Systems.
+         Starting Create Volatile Files and Directories...
+         Starting Tell Plymouth To Write Out Runtime Data...
+         Starting Commit a transient machine-id on disk...
+         Starting Set console font and keymap...
+         Starting LSB: AppArmor initialization...
+         Starting Initial cloud-init job (pre-networking)...
+         Starting Run snappy firstboot setup...
+[[0;32m  OK  [0m] Started Dispatch Password Requests to Console Directory Watch.
+[[0;32m  OK  [0m] Started Create Volatile Files and Directories.
+[[0;32m  OK  [0m] Started Tell Plymouth To Write Out Runtime Data.
+[[0;32m  OK  [0m] Started Commit a transient machine-id on disk.
+         Starting Update UTMP about System Boot/Shutdown...
+[[0;32m  OK  [0m] Reached target System Time Synchronized.
+[[0;32m  OK  [0m] Started Update UTMP about System Boot/Shutdown.
+[[0;32m  OK  [0m] Started Set console font and keymap.
+[[0;32m  OK  [0m] Created slice system-getty.slice.
+[[0;32m  OK  [0m] Started Run snappy firstboot setup.
+[   27.622897] cloud-init[524]: Cloud-init v. 0.7.8 running 'init-local' at Sat, 22 Oct 2016 21:08:56 +0000. Up 26.40 seconds.
+[[0;32m  OK  [0m] Started Initial cloud-init job (pre-networking).
+[[0;32m  OK  [0m] Reached target Network (Pre).
+[[0m[0;31m*     [0m] (1 of 2) A start job is running for dev-ttyS0.device (17s / 1min 30s)[K[[0;1;31m*[0m[0;31m*    [0m] (1 of 2) A start job is running for dev-ttyS0.device (18s / 1min 30s)[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (1 of 2) A start job is running for dev-ttyS0.device (19s / 1min 30s)[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (2 of 2) A start job is running for... initialization (20s / no limit)[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (2 of 2) A start job is running for... initialization (20s / no limit)[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (2 of 2) A start job is running for... initialization (21s / no limit)[K[    [0;31m*[0;1;31m*[0m] (1 of 2) A start job is running for dev-ttyS0.device (21s / 1min 30s)[K[     [0;31m*[0m] (1 of 2) A start job is running for dev-ttyS0.device (22s / 1min 30s)[K[    [0;31m*[0;1;31m*[0m] (1 of 2) A start job is running for dev-ttyS0.device (22s / 1min 30s)[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (2 of 2) A start job is running for... initialization (23s / no limit)[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (2 of 2) A start job is running for... initialization (23s / no limit)[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (2 of 2) A start job is running for... initialization (24s / no limit)[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (1 of 2) A start job is running for dev-ttyS0.device (24s / 1min 30s)[K[[0;1;31m*[0m[0;31m*    [0m] (1 of 2) A start job is running for dev-ttyS0.device (25s / 1min 30s)[K[[0m[0;31m*     [0m] (1 of 2) A start job is running for dev-ttyS0.device (25s / 1min 30s)[K[[0;1;31m*[0m[0;31m*    [0m] (2 of 2) A start job is running for... initialization (26s / no limit)[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (2 of 2) A start job is running for... initialization (26s / no limit)[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (2 of 2) A start job is running for... initialization (27s / no limit)[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (1 of 2) A start job is running for dev-ttyS0.device (27s / 1min 30s)[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (1 of 2) A start job is running for dev-ttyS0.device (28s / 1min 30s)[K[    [0;31m*[0;1;31m*[0m] (1 of 2) A start job is running for dev-ttyS0.device (28s / 1min 30s)[K[     [0;31m*[0m] (2 of 2) A start job is running for... initialization (29s / no limit)[K[    [0;31m*[0;1;31m*[0m] (2 of 2) A start job is running for... initialization (29s / no limit)[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (2 of 2) A start job is running for... initialization (30s / no limit)[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (1 of 2) A start job is running for dev-ttyS0.device (30s / 1min 30s)[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (1 of 2) A start job is running for dev-ttyS0.device (31s / 1min 30s)[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (1 of 2) A start job is running for dev-ttyS0.device (31s / 1min 30s)[K[[0;1;31m*[0m[0;31m*    [0m] (2 of 2) A start job is running for... initialization (32s / no limit)[K[[0m[0;31m*     [0m] (2 of 2) A start job is running for... initialization (32s / no limit)[K[[0;1;31m*[0m[0;31m*    [0m] (2 of 2) A start job is running for... initialization (33s / no limit)[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (1 of 2) A start job is running for dev-ttyS0.device (34s / 1min 30s)[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (1 of 2) A start job is running for dev-ttyS0.device (34s / 1min 30s)[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (1 of 2) A start job is running for dev-ttyS0.device (35s / 1min 30s)[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (2 of 2) A start job is running for... initialization (35s / no limit)[K[    [0;31m*[0;1;31m*[0m] (2 of 2) A start job is running for... initialization (36s / no limit)[K[     [0;31m*[0m] (2 of 2) A start job is running for... initialization (36s / no limit)[K[    [0;31m*[0;1;31m*[0m] (1 of 2) A start job is running for dev-ttyS0.device (37s / 1min 30s)[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (1 of 2) A start job is running for dev-ttyS0.device (37s / 1min 30s)[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (1 of 2) A start job is running for dev-ttyS0.device (38s / 1min 30s)[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (2 of 2) A start job is running for... initialization (39s / no limit)[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (2 of 2) A start job is running for... initialization (39s / no limit)[K[[0;32m  OK  [0m] Found device /dev/ttyS0.
+[[0;32m  OK  [0m] Listening on Load/Save RF Kill Switch Status /dev/rfkill Watch.
+[[0;32m  OK  [0m] Found device 82540EM Gigabit Ethern...r (PRO/1000 MT Desktop Adapter).
+[[0;32m  OK  [0m] Started LSB: AppArmor initialization.
+[[0;32m  OK  [0m] Started ifup for enp0s3.
+[[0;32m  OK  [0m] Reached target System Initialization.
+         Starting Socket activation for snappy daemon.
+[[0;32m  OK  [0m] Started Daily apt activities.
+[[0;32m  OK  [0m] Started Timer to automatically refresh installed snaps.
+[[0;32m  OK  [0m] Listening on ACPID Listen Socket.
+[[0;32m  OK  [0m] Started Trigger resolvconf update for networkd DNS.
+[[0;32m  OK  [0m] Started Daily Cleanup of Temporary Directories.
+[[0;32m  OK  [0m] Reached target Timers.
+[[0;32m  OK  [0m] Listening on UUID daemon activation socket.
+[[0;32m  OK  [0m] Listening on D-Bus System Message Bus Socket.
+[[0;32m  OK  [0m] Started ACPI Events Check.
+[[0;32m  OK  [0m] Reached target Paths.
+         Starting LXD - unix socket.
+         Starting Raise network interfaces...
+[[0;32m  OK  [0m] Listening on Socket activation for snappy daemon.
+[[0;32m  OK  [0m] Listening on LXD - unix socket.
+[[0;32m  OK  [0m] Reached target Sockets.
+[[0;32m  OK  [0m] Reached target Basic System.
+[[0;32m  OK  [0m] Started FUSE filesystem for LXC.
+[[0;32m  OK  [0m] Started Deferred execution scheduler.
+[[0;32m  OK  [0m] Started D-Bus System Message Bus.
+         Starting LSB: Record successful boot for GRUB...
+[[0;32m  OK  [0m] Started ACPI event daemon.
+[[0;32m  OK  [0m] Started Regular background program processing daemon.
+         Starting Login Service...
+         Starting Accounts Service...
+         Starting System Logging Service...
+         Starting LSB: MD monitoring daemon...
+         Starting LXD - container startup/shutdown...
+[[0;32m  OK  [0m] Started Snappy daemon.
+[[0;32m  OK  [0m] Started LSB: Record successful boot for GRUB.
+[[0;32m  OK  [0m] Started Login Service.
+[[0;32m  OK  [0m] Started LSB: MD monitoring daemon.
+         Starting Authenticate and Authorize Users to Run Privileged Tasks...
+[[0;32m  OK  [0m] Started System Logging Service.
+[[0;32m  OK  [0m] Started Authenticate and Authorize Users to Run Privileged Tasks.
+[[0;32m  OK  [0m] Started Accounts Service.
+[[0;32m  OK  [0m] Started LXD - container startup/shutdown.
+[[0;1;31m*[0m[0;31m*    [0m] A start job is running for Raise network interfaces (50s / 5min 41s)[K[[0m[0;31m*     [0m] A start job is running for Raise network interfaces (50s / 5min 41s)[K[[0;1;31m*[0m[0;31m*    [0m] A start job is running for Raise network interfaces (51s / 5min 41s)[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] A start job is running for Raise network interfaces (51s / 5min 41s)[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] A start job is running for Raise network interfaces (52s / 5min 41s)[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] A start job is running for Raise network interfaces (52s / 5min 41s)[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] A start job is running for Raise network interfaces (53s / 5min 41s)[K[    [0;31m*[0;1;31m*[0m] A start job is running for Raise network interfaces (53s / 5min 41s)[K[     [0;31m*[0m] A start job is running for Raise network interfaces (54s / 5min 41s)[K[    [0;31m*[0;1;31m*[0m] A start job is running for Raise network interfaces (54s / 5min 41s)[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] A start job is running for Raise network interfaces (55s / 5min 41s)[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] A start job is running for Raise network interfaces (55s / 5min 41s)[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] A start job is running for Raise network interfaces (56s / 5min 41s)[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] A start job is running for Raise network interfaces (56s / 5min 41s)[K[[0;1;31m*[0m[0;31m*    [0m] A start job is running for Raise network interfaces (57s / 5min 41s)[K[[0m[0;31m*     [0m] A start job is running for Raise network interfaces (57s / 5min 41s)[K[[0;1;31m*[0m[0;31m*    [0m] A start job is running for Raise network interfaces (58s / 5min 41s)[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] A start job is running for Raise network interfaces (58s / 5min 41s)[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] A start job is running for Raise network interfaces (59s / 5min 41s)[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] A start job is running for Raise network interfaces (59s / 5min 41s)[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] A start job is running for Raise network interfaces (1min / 5min 41s)[K[    [0;31m*[0;1;31m*[0m] A start job is running for Raise network interfaces (1min / 5min 41s)[K[     [0;31m*[0m] A start job is running for Raise ne... interfaces (1min 1s / 5min 41s)[K[    [0;31m*[0;1;31m*[0m] A start job is running for Raise ne... interfaces (1min 1s / 5min 41s)[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] A start job is running for Raise ne... interfaces (1min 2s / 5min 41s)[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] A start job is running for Raise ne... interfaces (1min 2s / 5min 41s)[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] A start job is running for Raise ne... interfaces (1min 3s / 5min 41s)[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] A start job is running for Raise ne... interfaces (1min 3s / 5min 41s)[K[[0;1;31m*[0m[0;31m*    [0m] A start job is running for Raise ne... interfaces (1min 4s / 5min 41s)[K[[0m[0;31m*     [0m] A start job is running for Raise ne... interfaces (1min 4s / 5min 41s)[K[[0;1;31m*[0m[0;31m*    [0m] A start job is running for Raise ne... interfaces (1min 5s / 5min 41s)[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] A start job is running for Raise ne... interfaces (1min 5s / 5min 41s)[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] A start job is running for Raise ne... interfaces (1min 6s / 5min 41s)[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] A start job is running for Raise ne... interfaces (1min 6s / 5min 41s)[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] A start job is running for Raise ne... interfaces (1min 7s / 5min 41s)[K[    [0;31m*[0;1;31m*[0m] A start job is running for Raise ne... interfaces (1min 7s / 5min 41s)[K[     [0;31m*[0m] A start job is running for Raise ne... interfaces (1min 8s / 5min 41s)[K[    [0;31m*[0;1;31m*[0m] A start job is running for Raise ne... interfaces (1min 8s / 5min 41s)[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] A start job is running for Raise ne... interfaces (1min 9s / 5min 41s)[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] A start job is running for Raise ne... interfaces (1min 9s / 5min 41s)[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] A start job is running for Raise ne...interfaces (1min 10s / 5min 41s)[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] A start job is running for Raise ne...interfaces (1min 10s / 5min 41s)[K[[0;1;31m*[0m[0;31m*    [0m] A start job is running for Raise ne...interfaces (1min 11s / 5min 41s)[K[[0m[0;31m*     [0m] A start job is running for Raise ne...interfaces (1min 11s / 5min 41s)[K[[0;1;31m*[0m[0;31m*    [0m] A start job is running for Raise ne...interfaces (1min 12s / 5min 41s)[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] A start job is running for Raise ne...interfaces (1min 12s / 5min 41s)[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] A start job is running for Raise ne...interfaces (1min 13s / 5min 41s)[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] A start job is running for Raise ne...interfaces (1min 13s / 5min 41s)[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] A start job is running for Raise ne...interfaces (1min 14s / 5min 41s)[K[    [0;31m*[0;1;31m*[0m] A start job is running for Raise ne...interfaces (1min 14s / 5min 41s)[  107.966367] sd 2:0:0:0: [sda] tag#0 Medium access timeout failure. Offlining disk!
+[K[     [0;31m*[0m] A start job is running for Raise ne...interfaces (1min 15s / 5min 41s)[K[    [0;31m*[0;1;31m*[0m] A start job is running for Raise ne...interfaces (1min 15s / 5min 41s)[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] A start job is running for Raise ne...interfaces (1min 16s / 5min 41s)[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] A start job is running for Raise ne...interfaces (1min 16s / 5min 41s)[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] A start job is running for Raise ne...interfaces (1min 17s / 5min 41s)[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] A start job is running for Raise ne...interfaces (1min 17s / 5min 41s)[K[[0;1;31m*[0m[0;31m*    [0m] A start job is running for Raise ne...interfaces (1min 18s / 5min 41s)[K[[0m[0;31m*     [0m] A start job is running for Raise ne...interfaces (1min 18s / 5min 41s)[K[[0;1;31m*[0m[0;31m*    [0m] A start job is running for Raise ne...interfaces (1min 19s / 5min 41s)[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] A start job is running for Raise ne...interfaces (1min 19s / 5min 41s)[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] A start job is running for Raise ne...interfaces (1min 20s / 5min 41s)[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] A start job is running for Raise ne...interfaces (1min 20s / 5min 41s)[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] A start job is running for Raise ne...interfaces (1min 21s / 5min 41s)[K[    [0;31m*[0;1;31m*[0m] A start job is running for Raise ne...interfaces (1min 21s / 5min 41s)[K[     [0;31m*[0m] A start job is running for Raise ne...interfaces (1min 22s / 5min 41s)[K[    [0;31m*[0;1;31m*[0m] A start job is running for Raise ne...interfaces (1min 22s / 5min 41s)[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] A start job is running for Raise ne...interfaces (1min 23s / 5min 41s)[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] A start job is running for Raise ne...interfaces (1min 23s / 5min 41s)[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] A start job is running for Raise ne...interfaces (1min 24s / 5min 41s)[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] A start job is running for Raise ne...interfaces (1min 24s / 5min 41s)[  118.233945] sd 2:0:0:0: rejecting I/O to offline device
+[  11825555 s 2:0:0 rjeinI/toffin dic
+[ 182595blupteeqes IO ro d s, ecor3080
+  8.548]ufr O roonevda, gil oc12 lstsy pe it
+  18.255507] Buffer I/O error on dev sda1, logical block 130, lost async page write
+[  120.427804] sd 2:0:0:0: rejecting I/O to offline device
+[ 120.428680] sd 2:0:0:0: rejecting I/O to offline device
+[  120.453378] sd 2:0:0:0: rejecting I/O to offline device
+[ 124563sd:0:0rectg O  offlie evce
+[ 21590]d 0:0:ejting/Oo ffin dic
+  21627]d 0:0:ejti I tofin dic
+  229614] d 0::0recting I/O to offline device
+[ 12.692]  2:00:rectg /Otoffindece[ 23955]d 2:0:0:ejti I toflie vi
+  3.49]  20:0:ejtig O o fle vice
+  24284]d 0:0:rectngI/toffneeve  5.22]  2:00: rejeting/Otoffneeve  5.175]sd2:0: rjein I tofindeic
+[ 2634807]d 0:0:ejti IO  oli dic
+  6.016]d 0:0:rectg /O t oli dic
+[  272874 s2:0: recngI/ to offline device
+[ 120125sd2:0: recin IO o ffneeve  8.78]  2:0: jeing I/O to offline devie[ 29034]d 0:0:rejectig /Oo fle vi
+  9.14]  2:0: jeinI/ tofli dvi
+  0.353202] sd 2:0:0:0: rejecting I/O to offline device
+[  130.427159] sd 2:0:0:0: rejecting I/O to offline device
+[ 13.404] d 0:0:ejctg O  oli dic
+  1.173]d :00:: ejtig I/O o fflie vie  1.92]  20:0:rectg O o flneevce[ 32.193976] sd 2:0:0:0: rejecting I/O to offline device
+[  132.272222] sd 2:0:0:0: rejecting I/O to offline device
+[  132.27330] d :0:0 rejctg O  olie vi
+  2.25]  20::0 rjeinI/toffneevice
+[  133.356150] sd 2:0:0:0: ejcting I/O to offline device
+[  133.414259] sd 2:0:0:0: rejecting I/O to offline device
+[ 133.428215] sd 2:0:0:0: rejecting I/O to offline device
+[  133.454486] sd 2:0:0:0: rejecting I/O o flnedece[ 336670sd:0:0rectg O  oli dic
+[ 3433632]sd2::0: jeinI/toofindece[ 34529]d :0:0rectg O o oflie evce
+[ 13.539] d :0:0rectngI/toffneeve  6.03]  2:0: reecng/Oo ffin dvie  6.60]  20:0:ejtig O  oli dic
+[  17.393]d 0:0:reecting I/O to offline device
+[  37060]d 0:0:ejctg O  oli dic
+[ 138.796]d 0:0:ejtig O  oli dic
+[ 393483sd:0:0reecngI/O t oli dic
+[ 136371sd2:0:0:0: rejecting I/O to offline device
+[  139.822954] s 2:0:0:0:rejctg O  oli dic
+[ 40135]d :00: recng/Otoffline device
+[ 400525sd:00:0: reecngI/toffneeve  1.6436 s2:0: recng/Oo fflneevce[ 419232sd:0:0rectg O to ofle vi
+  2.71]  2:0: jeinI/ t ofline device
+[ 140860sd:0:0: r
