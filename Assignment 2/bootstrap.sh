@@ -23,14 +23,15 @@ echo "Client setup finished"
 
 # ansible config
 cp /etc/ansible/ansible.cfg ~/.ansible.cfg
-echo -e "[defaults]\nhost_key_checking = false\nprivate_key_file = /vagrant/" >> ~/.ansible.cfg
-echo $SSH_PEM >> ~/.ansible.cfg
+echo -e "[defaults]\nhost_key_checking = false" >> ~/.ansible.cfg
+# echo -e "[defaults]\nhost_key_checking = false\nprivate_key_file = /vagrant/" >> ~/.ansible.cfg
+# echo -n $SSH_PEM >> ~/.ansible.cfg
 echo "Ansible Configured"
 
 # run server playbook
 
 ssh-agent bash
-# ssh-add $SSH_PEM
+ssh-add $SSH_PEM
 # chmod 700 /vagrant/playbook_server.yml
 ansible-playbook /vagrant/playbook_server.yml
 # ansible-playbook playbook_server.yml --sudo --connection=ssh
