@@ -37,9 +37,6 @@
       key_name: peck_ashley
       name: rad_server
       network: b16b0244-e1b5-4d36-90ff-83a0d87d8682
-      # nics:
-      #    - net-id: b16b0244-e1b5-4d36-90ff-83a0d87d8682
-      #    - net-name: internal network
       region_name: regionOne
       security_groups: default
       state: present
@@ -50,7 +47,7 @@
   remote_user:  ubuntu
   become: yes
   gather_facts: no
-  pre_tasks:
+  tasks:
     - name: 'install python2'
       raw: apt-get install -y python python-dev python-pip
 ...
