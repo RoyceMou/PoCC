@@ -1,30 +1,30 @@
 #!/bin/bash
 
-apt-get install software-properties-common
-apt-add-repository ppa:ansible/ansible
-apt-get update
-apt-get install -y ansible
+# apt-get install software-properties-common
+# apt-add-repository ppa:ansible/ansible
+# apt-get update
+# apt-get install -y ansible
 
-# CHANGE CONSTANTS HERE
-export SERVER_IP="129.59.107.80"
-export SSH_PEM="default.pem"
+# # CHANGE CONSTANTS HERE
+# export SERVER_IP="129.59.107.80"
+# export SSH_PEM="default.pem"
 
-# generate ansible hosts file
-echo -e "[server]\n" >> /etc/ansible/hosts 
-echo $SERVER_IP >> /etc/ansible/hosts 
-echo "Ansible hosts file generated"
+# # generate ansible hosts file
+# echo -e "[server]\n" >> /etc/ansible/hosts 
+# echo $SERVER_IP >> /etc/ansible/hosts 
+# echo "Ansible hosts file generated"
 
-### START CLIENT SETUP
-apt-get install -y python python-dev python-pip build-essential libssl-dev libffi-dev python-dev
-pip install shade
-# TODO might need to install ssl here
-### END CLIENT SETUP
-echo "Client setup finished"
+# ### START CLIENT SETUP
+# apt-get install -y python python-dev python-pip build-essential libssl-dev libffi-dev
+# pip install shade
+# # TODO might need to install ssl here
+# ### END CLIENT SETUP
+# echo "Client setup finished"
 
-# ansible config
-cp /etc/ansible/ansible.cfg ~/.ansible.cfg
-echo -e "[defaults]\nhost_key_checking = false " >> ~/.ansible.cfg
-echo "Ansible Configured"
+# # ansible config
+# cp /etc/ansible/ansible.cfg ~/.ansible.cfg
+# echo -e "[defaults]\nhost_key_checking = false " >> ~/.ansible.cfg
+# echo "Ansible Configured"
 
 # run server playbook
 ssh-agent bash

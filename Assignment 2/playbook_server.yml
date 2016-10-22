@@ -2,6 +2,29 @@
 # This playbook will install python on our Horizon Cloud VM
 # Python is needed to run a whole slew of different things. So
 # Python is the first thing we need
+
+- name: launch a compute instance
+  hosts: localhost
+  tasks:
+  - name: launch an instance
+    os_server:
+      state: present
+      auth:
+        auth_url: https://keystone.isis.vanderbilt.edu:5000/v2.0
+        username: username
+        password: Equality7-2521
+        project_name: username-project1
+      cloud: mordred
+      name: vm1
+      region_name: regionOne
+      availability_zone: az2
+      image: 9302692b-b787-4b52-a3a6-daebb79cb498
+      key_name: test
+      timeout: 200
+      flavor: 101
+      floating_ips:
+        - 129.59.107.80
+
 - hosts: server
   remote_user:  ubuntu
   become: yes
