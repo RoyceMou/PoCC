@@ -31,10 +31,16 @@ echo "Ansible Configured"
 # run server playbook
 
 ssh-agent bash
+chmod 700 $SSH_PEM
 ssh-add $SSH_PEM
-# chmod 700 /vagrant/playbook_server.yml
 ansible-playbook /vagrant/playbook_server.yml
 # ansible-playbook playbook_server.yml --sudo --connection=ssh
+
+ansible server –m copy –a "src=/vagrant/server.py dest=~/server.py" –u ubuntu
+ansible server -a "sudo apt-get install -y python-dev python-pip" -u ubuntu
+ansible server -a "pip install flask numpy" -u ubuntu
+
+
 
 # run python client
 # python client.py $SERVER_IP
