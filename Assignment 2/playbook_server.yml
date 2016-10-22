@@ -1,16 +1,16 @@
 ---
 # Creates a new instance and attaches to a network and passes metadata to
 # the instance
-- os_server:
-       state: present
-       name: vm1
-       image: ubuntu-14.04
-       key_name: ansible_key
-       timeout: 200
-       flavor: 4
-       nics:
-         - net-id: b16b0244-e1b5-4d36-90ff-83a0d87d8682
-         - net-name: another_network
+# - os_server:
+#        state: present
+#        name: vm1
+#        image: ubuntu-14.04
+#        key_name: ansible_key
+#        timeout: 200
+#        flavor: 4
+#        nics:
+#          - net-id: b16b0244-e1b5-4d36-90ff-83a0d87d8682
+#          - net-name: another_network
 
 # This playbook will install python on our Horizon Cloud VM
 # Python is needed to run a whole slew of different things. So
@@ -21,22 +21,30 @@
   tasks:
   - name: launch an instance
     os_server:
-      state: present
+      # availability_zone: az2
       auth:
         auth_url: https://keystone.isis.vanderbilt.edu:5000/v2.0
-        username: username
-        password: Equality7-2521
-        project_name: username-project1
-      cloud: mordred
-      name: vm1
-      region_name: regionOne
-      availability_zone: az2
-      image: 9302692b-b787-4b52-a3a6-daebb79cb498
-      key_name: test
-      timeout: 200
-      flavor: 101
+        # TODO
+        username: peckam
+        password: horizonpass
+        project_name: Cloud Class
+      flavor: m1.small
       floating_ips:
         - 129.59.107.80
+      image: ubuntu-14.04
+      # TODO
+      key: /vagrant/peck_ashley.pem
+      key_name: peck_ashley
+      name: rad_server
+      network: b16b0244-e1b5-4d36-90ff-83a0d87d8682
+      # nics:
+      #    - net-id: b16b0244-e1b5-4d36-90ff-83a0d87d8682
+      #    - net-name: internal network
+      region_name: regionOne
+      security_groups: default
+      state: present
+      timeout: 200
+
 
 - hosts: server
   remote_user:  ubuntu
