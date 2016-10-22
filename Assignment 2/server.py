@@ -5,6 +5,8 @@ import time
 import signal
 import httplib
 import subprocess
+import numpy as np
+from numpy import linalg
 from flask import Flask
 from flask import request
 

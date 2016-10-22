@@ -2,12 +2,8 @@
 
 import sys
 import httplib
-import manager
 import time
-import subprocess
-import random
 
-ip = '129.59.107.80'
 PORT = '8080'
 
 def request(connection, path, display_response=False, display_time=False):
@@ -22,7 +18,7 @@ def request(connection, path, display_response=False, display_time=False):
         print 'Connection request took {0} seconds'.format(time_elapsed)
     return time_elapsed
 
-def main():
+def main(ip):
     # @@@ NOTE @@@
     # In your code, you should first start the main client-facing server on the
     # horizon cloud. See my sample code nova_server_create.py on how to do
@@ -53,4 +49,9 @@ def main():
     
 # invoke main
 if __name__ == '__main__':
-    sys.exit(main())
+    try:
+        ip = sys.argv[1]
+        sys.exit(main(ip))
+    except IndexError:
+        print 'usage: python client.py <ip_addr>'
+    # e.g.: python client.py 129.59.107.80

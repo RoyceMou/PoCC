@@ -1,0 +1,20 @@
+---
+# This playbook will install python on our Horizon Cloud VM
+# Python is needed to run a whole slew of different things. So
+# Python is the first thing we need
+- hosts: MyHorizonVMs
+  remote_user:  ubuntu
+  become: yes
+  gather_facts: no
+  pre_tasks:
+    - name: 'install python2'
+      raw: apt-get install -y python python-dev python-pip
+...
+
+
+
+# setup hoizon vm
+# copy server files over
+# install python 
+# install flask and numpy
+# run server
