@@ -42,6 +42,8 @@ ansible server -a "sudo pip install flask numpy" -u ubuntu
 
 
 
+
+
 # run python client
 # python client.py $SERVER_IP
 
