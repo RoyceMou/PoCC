@@ -15,6 +15,7 @@ echo $SERVER_IP >> /etc/ansible/hosts
 
 ### START CLIENT SETUP
 apt-get install -y python python-dev python-pip
+sudo apt-get install build-essential libssl-dev libffi-dev python-dev
 pip install shade
 # TODO might need to install ssl here
 ### END CLIENT SETUP
