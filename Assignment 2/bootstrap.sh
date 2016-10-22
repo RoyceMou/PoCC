@@ -12,22 +12,24 @@ export SSH_PEM="default.pem"
 # generate ansible hosts file
 echo -e "[server]\n" >> /etc/ansible/hosts 
 echo $SERVER_IP >> /etc/ansible/hosts 
+echo "Ansible hosts file generated"
 
 ### START CLIENT SETUP
-apt-get install -y python python-dev python-pip
-sudo apt-get install build-essential libssl-dev libffi-dev python-dev
+apt-get install -y python python-dev python-pip build-essential libssl-dev libffi-dev python-dev
 pip install shade
 # TODO might need to install ssl here
 ### END CLIENT SETUP
+echo "Client setup finished"
 
 # ansible config
 cp /etc/ansible/ansible.cfg ~/.ansible.cfg
 echo -e "[defaults]\nhost_key_checking = false " >> ~/.ansible.cfg
+echo "Ansible Configured"
 
 # run server playbook
-
 ssh-agent bash
 ssh-add $SSH_PEM
+chmod 700 playbook_server.yml
 ansible-playbook playbook_server.yml
 # ansible-playbook playbook_server.yml --sudo --connection=ssh
 
