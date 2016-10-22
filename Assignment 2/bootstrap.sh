@@ -38,7 +38,7 @@ ansible-playbook /vagrant/playbook_server.yml
 
 ansible server –m copy –a "src=/vagrant/server.py dest=~/server.py" –u ubuntu
 ansible server -a "sudo apt-get install -y python-dev python-pip" -u ubuntu
-ansible server -a "pip install flask numpy" -u ubuntu
+ansible server -a "sudo pip install flask numpy" -u ubuntu
 
 
 
