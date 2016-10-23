@@ -7,8 +7,8 @@
       auth:
         auth_url: https://keystone.isis.vanderbilt.edu:5000/v2.0
         # START CHANGE
-        username: mour
-        password: mour
+        username: 
+        password: 
         # END CHANGE
         project_name: Cloud Class
       flavor: m1.small
