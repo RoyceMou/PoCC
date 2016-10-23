@@ -1,0 +1,63 @@
+---
+- name: 'client setup'
+  hosts: localhost
+  pre_tasks:
+  - name: 'client setup packages'
+    raw: apt-get install -y python python-dev python-pip build-essential libssl-dev libffi-dev 
+
+  - name: 'client setup python packages'
+    raw: pip install shade
+
+  tasks:
+  - name: 'launch server'
+    os_server:
+      auth:
+        auth_url: https://keystone.isis.vanderbilt.edu:5000/v2.0
+        # START CHANGE
+        username: mour
+        password: mour
+        # END CHANGE
+        project_name: Cloud Class
+      flavor: m1.small
+      floating_ips:
+        - 129.59.107.80
+      image: ubuntu-14.04
+      # START CHANGE
+      key: /vagrant/default.pem
+      key_name: default
+      # END CHANGE
+      name: rad_server_r
+      network: b16b0244-e1b5-4d36-90ff-83a0d87d8682
+      region_name: regionOne
+      security_groups: default
+      state: present
+      timeout: 200
+  - name: 'wait for ssh server to start'
+    pause: seconds=20
+
+
+- name: 'server setup'
+  hosts: server
+  remote_user: ubuntu
+  become: yes
+  gather_facts: no
+  tasks :
+  - name: 'copy web server'
+    copy: src=/vagrant/server.py dest=~/server.py owner=ubuntu
+
+  - name: 'server setup update'    
+    raw: apt-get update
+
+  - name: 'server setup packages'
+    raw: apt-get install -y python python-dev python-pip
+
+  - name: 'server setup python packages'
+    raw: pip install flask numpy
+    
+  - name: 'start web server'
+    shell: "export FLASK_APP=~/server.py; python -m flask run --host=0.0.0.0 --port=8080 &"
+    args:
+      executable: /bin/bash
+    async: 1000
+    poll: 0
+...
