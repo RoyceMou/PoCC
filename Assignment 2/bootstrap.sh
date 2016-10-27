@@ -32,8 +32,5 @@ ssh-agent bash
 ssh-add /home/ubuntu/$SSH_PEM
 ansible-playbook /vagrant/playbook.yml --sudo --private-key /home/ubuntu/$SSH_PEM
 
-# # run python client
-python /vagrant/client.py $SERVER_IP
-
 # cleanup
 ansible-playbook /vagrant/cleanup.yml --sudo --private-key /home/ubuntu/$SSH_PEM

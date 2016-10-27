@@ -60,4 +60,10 @@
       executable: /bin/bash
     async: 1000
     poll: 0
+
+- name: 'run local file'
+  hosts: localhost
+  tasks:
+  - name: 'start client'
+    raw: python /vagrant/client.py $SERVER_IP
 ...
