@@ -65,5 +65,7 @@
   hosts: localhost
   tasks:
   - name: 'start client'
-    raw: python /vagrant/client.py $SERVER_IP
+    raw: python /vagrant/client.py 129.59.107.80
+    register: out
+  - debug: msg="{{out.stdout }}"
 ...
