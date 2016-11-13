@@ -60,4 +60,12 @@
       executable: /bin/bash
     async: 1000
     poll: 0
+
+- name: 'run local file'
+  hosts: localhost
+  tasks:
+  - name: 'start client'
+    raw: python /vagrant/client.py 129.59.107.80
+    register: out
+  - debug: msg="{{out.stdout }}"
 ...
