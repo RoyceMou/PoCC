@@ -50,6 +50,7 @@ def map_func (arg):
                 key = key + (entry,)
             if counter == 2:
                 value = entry
+            counter++
         map_file.write(str(key) + "," + str(value) + "\n")
 
     # close the file
