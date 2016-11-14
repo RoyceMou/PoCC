@@ -1,14 +1,3 @@
-#!/usr/bin/python
-#  
-#
-# Vanderbilt University Computer Science
-# Author: Aniruddha Gokhale
-# Course: CS4287-5287 Principles of Cloud Computing
-# Created: Fall 2016
-#
-# Purpose: MapReduce Framework for Wordcount (not a generic framework)
-#
-
 # system and time
 import os
 import sys
