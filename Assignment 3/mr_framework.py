@@ -22,24 +22,21 @@ def map_func (arg):
     # split method of the string class, we use regexp's split
 
     # split on line breaks
-    pattern = "\n"
-    split_arg = re.split (pattern, arg['data'])
+    split_arg = arg['data'].split('\n')
 
-    pattern2 = ","
-    
     # For every element in the split, if it belongs to a sensical
     # word, emit it as an intermediate key with its count
     for token in split_arg:
-        split_arg2 = re.split (pattern2,token)
+        split_arg2 = token.split(',')
         counter = 0
         key = ""
         value = 0
         for entry in split_arg2:
             if counter > 2:
-                key = key + (str (entry))+","
+                key = key + (str (entry)) + ","
             if counter == 2:
                 value = entry
-            counter++
+            counter += 1
         if counter == 7:
             map_file.write(key + "," + str(value) + "\n")
 
