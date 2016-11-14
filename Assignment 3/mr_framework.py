@@ -1,14 +1,3 @@
-#!/usr/bin/python
-#  
-#
-# Vanderbilt University Computer Science
-# Author: Aniruddha Gokhale
-# Course: CS4287-5287 Principles of Cloud Computing
-# Created: Fall 2016
-#
-# Purpose: MapReduce Framework for Wordcount (not a generic framework)
-#
-
 # system and time
 import os
 import sys
@@ -43,16 +32,16 @@ def map_func (arg):
     for token in split_arg:
         split_arg2 = re.split (pattern2,token)
         counter = 0
-        key = ()
+        key = ""
         value = 0
         for entry in split_arg2:
             if counter > 2:
-                key = key + (entry,)
+                key = key + (str (entry))+","
             if counter == 2:
                 value = entry
             counter++
         if counter == 7:
-            map_file.write(str(key) + "," + str(value) + "\n")
+            map_file.write(key + "," + str(value) + "\n")
 
     # close the file
     map_file.close ()
