@@ -1,7 +1,7 @@
-#Use following command to start docker, change /home/dmccormick to appropriate directory
+#Use following command to start docker, change /home/dmccormick to appropriate directory (Directory must be a root directory)
 #sudo docker run -it -v /home/dmccormick:/assign3 ubuntu_as3
 FROM ubuntu:latest
 RUN apt-get -y update && apt-get install -y python
 VOLUME ["/assign3"]
 #Change this to appropriate file
-CMD sh run.sh
+CMD sh assign3/run.sh
