@@ -93,10 +93,7 @@ def main ():
 
     # Note that the actual contents of the object can be retrieved in
     # the 2nd element of the tuple, in our case: obj_tuple[1]
-    print
-    print obj_tuple[0]
-    print type(obj_tuple[1])
-    with open('tmp.txt', 'w') as f:
+    with open('energy-sorted100M.csv', 'w') as f:
         f.write(obj_tuple[1])
 
     # Now you need to use the contents of the csv file to do the MapReduce

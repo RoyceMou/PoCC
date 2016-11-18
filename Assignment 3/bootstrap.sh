@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # CHANGE CONSTANTS HERE
-SERVER_IP="129.59.107.50"
+HORIZON_IP="129.59.107.50"
 SSH_PEM="dannyas3key.pem"
 
 apt-get install software-properties-common
@@ -10,8 +10,8 @@ apt-get update
 apt-get install -y ansible
 
 # generate ansible hosts file
-echo -e "[server]\n" >> /etc/ansible/hosts 
-echo $SERVER_IP >> /etc/ansible/hosts 
+echo -e "[horizon]\n" >> /etc/ansible/hosts 
+echo $HORIZON_IP >> /etc/ansible/hosts 
 echo "Ansible hosts file generated"
 
 # ansible config
@@ -33,7 +33,7 @@ ssh-add /home/ubuntu/$SSH_PEM
 ansible-playbook /vagrant/playbook.yml --sudo --private-key /home/ubuntu/$SSH_PEM
 
 # # run python client
-python /vagrant/client.py $SERVER_IP
+# python /vagrant/client.py $HORIZON_IP
 
 # cleanup
-ansible-playbook /vagrant/cleanup.yml --sudo --private-key /home/ubuntu/$SSH_PEM
+# ansible-playbook /vagrant/cleanup.yml --sudo --private-key /home/ubuntu/$SSH_PEM
