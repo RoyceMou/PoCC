@@ -3,10 +3,7 @@
   hosts: localhost
   pre_tasks:
   - name: 'client setup packages'
-    raw: apt-get install -y python python-dev python-pip build-essential libssl-dev libffi-dev 
-
-  - name: 'client setup python packages'
-    raw: pip install shade
+    raw: apt-get install -y build-essential libssl-dev libffi-dev 
 
   tasks:
   - name: 'launch server'
@@ -32,27 +29,34 @@
       security_groups: default
       state: present
       timeout: 200
+
   - name: 'wait for ssh server to start'
     pause: seconds=20
 
 
-- name: 'server setup'
-  hosts: server
+- name: 'horizon setup'
+  hosts: horizon
   remote_user: ubuntu
   become: yes
   gather_facts: no
   tasks :
-  - name: 'copy web server'
-    copy: src=/vagrant/server.py dest=~/server.py owner=ubuntu
+  - name: 'copy mr_thread.py'
+    copy: src=/vagrant/mr_thread.py dest=/home/ubuntu/mr_thread.py owner=ubuntu
 
-  - name: 'server setup update'    
+  - name: 'copy mr_framework.py'
+    copy: src=/vagrant/mr_framework.py dest=/home/ubuntu/mr_framework.py owner=ubuntu
+
+  - name: 'copy mapreduce.py'
+    copy: src=/vagrant/mapreduce.py dest=/home/ubuntu/mapreduce.py owner=ubuntu
+
+  - name: 'copy obj_retrieve.py'
+    copy: src=/vagrant/obj_retrieve.py dest=/home/ubuntu/obj_retrieve.py owner=ubuntu
+
+  - name: 'copy Dockerfile'
+    copy: src=/vagrant/Dockerfile dest=/home/ubuntu/Dockerfile owner=ubuntu
+
+  - name: 'server setup update'
     raw: apt-get update
-
-  - name: 'server setup packages'
-    raw: apt-get install -y python python-dev python-pip
-
-  - name: 'server setup python packages'
-    raw: pip install flask numpy
 
   - name: 'server install recommended docker packages'
     raw: apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual
@@ -75,10 +79,26 @@
   - name: 'server install docker'
     raw: apt-get install docker-engine
 
-  - name: 'start web server'
-    shell: "export FLASK_APP=~/server.py; python -m flask run --host=0.0.0.0 --port=8080 &"
-    args:
-      executable: /bin/bash
-    async: 1000
-    poll: 0
+#   - name: ''
+
+# sudo -s
+# cp /lib/systemd/system/docker.service /etc/systemd/system/docker.service
+# vi   /etc/systemd/system/docker.service
+# (or use whatever editor you are familiar with). Search for the line that starts with  ExecStart=
+# At the end of this line, insert --mtu=1400 so that the modified line looks like this:
+# ExecStart=/usr/bin/docker daemon -H fd:// –mtu=1400
+# save and close the file, and do the following:
+# systemctl daemon-reload
+# I also did one more thing but I am not sure if it is needed or not. You can do this step also. No harm. 
+# vi /etc/default/docker
+
+# and look for the commented line that had DOCKER_OPTS in it. Uncomment the line and modify it to look like this.
+
+# DOCKER_OPTS="--mtu 1400 --dns 8.8.8.8 --dns 8.8.4.4"
+
+# Note, there are 2 dashes before mtu and dns. Now do the following
+
+# prompt>  service docker restart
+
+
 ...
