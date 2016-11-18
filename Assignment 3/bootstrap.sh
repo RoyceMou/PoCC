@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # CHANGE CONSTANTS HERE
-SERVER_IP="129.59.107.80"
-SSH_PEM="default.pem"
+SERVER_IP="129.59.107.50"
+SSH_PEM="dannyas3key.pem"
 
 apt-get install software-properties-common
 apt-add-repository ppa:ansible/ansible

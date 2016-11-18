@@ -7,17 +7,17 @@
       auth:
         auth_url: https://keystone.isis.vanderbilt.edu:5000/v2.0
         # START CHANGE
-        username: 
-        password: 
+        username: mccord1
+        password: Webster3
         # END CHANGE
         project_name: Cloud Class
       flavor: m1.small
       floating_ips:
-        - 129.59.107.80
+        - 129.59.107.50
       image: ubuntu-14.04
       # START CHANGE
-      key: /vagrant/default.pem
-      key_name: default
+      key: /vagrant/dannyas3key.pem
+      key_name: dannyas3key
       # END CHANGE
       name: rad_server_r
       network: b16b0244-e1b5-4d36-90ff-83a0d87d8682
