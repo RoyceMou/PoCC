@@ -3,7 +3,10 @@
   hosts: localhost
   pre_tasks:
   - name: 'client setup packages'
-    raw: apt-get install -y build-essential libssl-dev libffi-dev 
+    raw: apt-get install -y python python-dev python-pip build-essential libssl-dev libffi-dev 
+
+  - name: 'client setup python packages'
+    raw: pip install shade
 
   tasks:
   - name: 'launch server'
@@ -11,8 +14,8 @@
       auth:
         auth_url: https://keystone.isis.vanderbilt.edu:5000/v2.0
         # START CHANGE
-        username: mccord1
-        password: Webster3
+        username: 
+        password: 
         # END CHANGE
         project_name: Cloud Class
       flavor: m1.small
@@ -20,8 +23,8 @@
         - 129.59.107.50
       image: ubuntu-14.04
       # START CHANGE
-      key: /vagrant/dannyas3key.pem
-      key_name: dannyas3key
+      key: /vagrant/default.pem
+      key_name: default
       # END CHANGE
       name: rad_server_r
       network: b16b0244-e1b5-4d36-90ff-83a0d87d8682
@@ -55,50 +58,37 @@
   - name: 'copy Dockerfile'
     copy: src=/vagrant/Dockerfile dest=/home/ubuntu/Dockerfile owner=ubuntu
 
-  - name: 'server setup update'
+  - name: 'copy .openrc.sh'
+    copy: src=/vagrant/.openrc.sh dest=/home/ubuntu/.openrc.sh owner=ubuntu
+
+  - name: 'copy energy-sorted100M.csv'
+    copy: src=/vagrant/energy-sorted100M.csv dest=/home/ubuntu/energy-sorted100M.csv owner=ubuntu
+
+  - name: 'server setup update'    
     raw: apt-get update
 
-  - name: 'server install recommended docker packages'
-    raw: apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual
+  - name: 'server setup packages'
+    raw: apt-get install -y python python-dev python-pip
 
-  - name: 'server install CA ca-certificates'
-    raw: apt-get install apt-transport-https ca-certificates
-    
-  - name: 'server add GPG key'
-    raw: apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+  - name: 'server setup python packages'
+    raw: pip install python-swiftclient python-keystoneclient
 
-  - name: 'server get docker from repo'
-    raw: echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" | tee /etc/apt/sources.list.d/docker.list
 
-  - name: 'server update apt package index'
-    raw: apt-get update
 
-  - name: 'server cache docker policy'
-    raw: apt-cache policy docker-engine
+  # all the stuff below needs to be run manually since grub has been locally modified
+  - name: 'install docker'
+    raw: curl -sSL https://get.docker.com/ | sh
 
-  - name: 'server install docker'
-    raw: apt-get install docker-engine
+# source openrc.sh
+# python obj_retrieve.py
+# Note that python obj_retrieve.py mostly fails due to an incomplete read
 
-#   - name: ''
+# sudo docker build .
 
-# sudo -s
-# cp /lib/systemd/system/docker.service /etc/systemd/system/docker.service
-# vi   /etc/systemd/system/docker.service
-# (or use whatever editor you are familiar with). Search for the line that starts with  ExecStart=
-# At the end of this line, insert --mtu=1400 so that the modified line looks like this:
-# ExecStart=/usr/bin/docker daemon -H fd:// –mtu=1400
-# save and close the file, and do the following:
-# systemctl daemon-reload
-# I also did one more thing but I am not sure if it is needed or not. You can do this step also. No harm. 
-# vi /etc/default/docker
-
-# and look for the commented line that had DOCKER_OPTS in it. Uncomment the line and modify it to look like this.
-
-# DOCKER_OPTS="--mtu 1400 --dns 8.8.8.8 --dns 8.8.4.4"
-
-# Note, there are 2 dashes before mtu and dns. Now do the following
-
-# prompt>  service docker restart
-
+# ssh into vm:
+# ssh -i default.pem -o StrictHostKeyChecking=no ubuntu@129.59.107.50
+# chmod 700 mapreduce.py
+# sudo docker run -v /home/ubuntu:/assign3 -it -d --name test python:2.7.9
+# sudo docker exec test python /assign3/mapreduce.py /assign3/energy-sorted100M.csv
 
 ...

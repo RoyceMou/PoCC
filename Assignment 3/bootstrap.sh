@@ -2,7 +2,7 @@
 
 # CHANGE CONSTANTS HERE
 HORIZON_IP="129.59.107.50"
-SSH_PEM="dannyas3key.pem"
+SSH_PEM="default.pem"
 
 apt-get install software-properties-common
 apt-add-repository ppa:ansible/ansible
