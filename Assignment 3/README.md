@@ -1,6 +1,6 @@
 ## Assignment 3 Project Page
 
-Steps
+Steps<br>
 1. Copy your ssh private key to this directory.<br>
 2. **bootstrap.sh**: modify SSH_PEM to the name for your ssh private key.<br>
 3. **playbook.yml**: add your username and password for the horizon cloud. Change the key path and name to you ssh private key name.<br>
