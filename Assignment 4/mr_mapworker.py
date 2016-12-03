@@ -95,24 +95,27 @@ class MR_Map ():
         # Each map task saves its intermediate results in a file
         map_file = open ("Map"+str(self.id)+".csv", "w")
 
-        # split the incoming chunk, which is a string. We want the
-        # list to be only words and nothing else. So rather than the simple
-        # split method of the string class, we use regexp's split
-
-        # We allow apostrophe
-        pattern = "(\s|~|`|\!|@|\#|\$|%|\^|&|\*|\(|\)|-|_|\+|=|\{|\}|\[|\]|\||\||:|;|\"|<|>|\,|\.|\?|\/)+"
-        split_arg = re.split (pattern, content)
-
-        # create a reg expression pattern against which we are going
-        # to match against. We allow a word with apostrophe
-        pattern = re.compile ("([A-Za-z]+)('[A-Za-z])?")
+        # split on line breaks
+        split_arg = content.split('\n')
 
         # For every element in the split, if it belongs to a sensical
         # word, emit it as an intermediate key with its count
+        # t = 0
         for token in split_arg:
-            # now check if it is a valid word
-            if pattern.match (token):
-                map_file.write (token + ", 1\n")
+            try:
+                # if t < 5:
+                #     print token
+                #     t += 1
+                idx, timestamp, value, ppty, plug_id, household_id, house_id = [f for f in token.split(',') if f]
+                # ensure all fields are nonempty
+                # if idx and times and value and ppty and plug_id and household_id and house_id:
+                map_file.write(','.join((ppty, plug_id, household_id, house_id, value)) + '\n')
+            except:
+                # disregard poorly formatted lines
+                pass
+
+        # close the file
+        map_file.close ()
 
         # close the file
         map_file.close ()

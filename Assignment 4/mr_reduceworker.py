@@ -94,16 +94,18 @@ class MR_Reduce ():
         reduce_file = open ("Reduce"+str(self.id)+".csv", "wb")
 
         # our contents will be a list of list. Each internal list could have
-        # one or more entries for a given unique word
+        # one or more entries for a given unique plug
         for items in contents:
             sum = 0
+            numItems = 0
             for i in range(len(items)):
                 sum = sum + items[i][1]
+                numItems += 1
 
             # The [0]'th entry of each of the entries of the second level
             # list is the unique word. We just use the first one and dump it
             # into our results file.
-            reduce_file.write (items[0][0] + ", " + str(sum) + "\n")
+            reduce_file.write (items[0][0] + ", " + str(sum/numItems) + "\n")
 
         reduce_file.close ()
 
