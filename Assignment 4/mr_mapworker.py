@@ -96,7 +96,7 @@ class MR_Map ():
         map_file = open ("Map"+str(self.id)+".csv", "w")
 
         # split on line breaks
-        split_arg = content.split('\n')
+        split_arg = content.splitlines()
 
         # For every element in the split, if it belongs to a sensical
         # word, emit it as an intermediate key with its count
@@ -113,9 +113,6 @@ class MR_Map ():
             except:
                 # disregard poorly formatted lines
                 pass
-
-        # close the file
-        map_file.close ()
 
         # close the file
         map_file.close ()
