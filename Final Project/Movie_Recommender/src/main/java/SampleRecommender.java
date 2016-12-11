@@ -40,9 +40,9 @@ class SampleRecommender {
             List recommendations = recommender.recommend(userID, numRecommendations);
             for (Object recommendation : recommendations) {
                 String recommendationString = recommendation.toString();
-                String movieID = recommendationString.substring(21,Str.indexOf(','));
-                String rating = recommendationString.substring(Str.indexOf(',') + 8,Str.indexOf(',') + 8);
-                System.out.println(map.get(Integer.parseInt(movieID)) + ", rating: " + rating);
+                String movieID = recommendationString.substring(21,recommendationString.indexOf(','));
+                String rating = recommendationString.substring(recommendationString.indexOf(',') + 8,recommendationString.indexOf(',') + 11);
+                System.out.println(movieMap.get(Integer.parseInt(movieID)) + ", rating: " + rating);
             }
 
             System.out.print("Do you want to continue? (y/n)");
