@@ -1,1 +1,1 @@
-Assignment page for a cloud computing course
+ReadMe for Cloud Class directory

@@ -90,9 +90,9 @@ def runMapReduceWordCount (hosts, args):
         print hosts
         
         # Start the master
-        print "Running cmd: python ./mr_wordcount.py -m ", str (args.map), " -r ", str (args.reduce), " -p ", str (args.masterport), " ", args.datafile, " on host: ", hosts[0].IP()
+        print "Running cmd: python ./mr_driver.py -m ", str (args.map), " -r ", str (args.reduce), " -p ", str (args.masterport), " ", args.datafile, " on host: ", hosts[0].IP()
         # popens [ master ] = master.popen ('ping', '-c3', master.IP() )
-        popens [ hosts[0] ] = hosts[0].popen ('python', './mr_wordcount.py', '-m', str(args.map), '-r', str(args.reduce), '-p', str(args.masterport), args.datafile, stdout=subprocess.PIPE )
+        popens [ hosts[0] ] = hosts[0].popen ('python', './mr_driver.py', '-m', str(args.map), '-r', str(args.reduce), '-p', str(args.masterport), args.datafile, stdout=subprocess.PIPE )
 
         # next run the Map workers
         # do this for as many map jobs as there are. Note that the hosts are organized as follows:
@@ -151,8 +151,8 @@ def genCommandsFile (hosts, args):
         # start the master manually on host h1s1
 
         # first create the command for the master
-        #cmd_str = hosts[0].name + " python mr_wordcount.py -p " + str (args.masterport) + " -m " + str (args.map) + " -r " + str (args.reduce) + " " + args.datafile + " &> " + hosts[0].name + ".out &\n"
-        #cmds.write (cmd_str)
+        cmd_str = hosts[0].name + " python mr_driver.py -p " + str (args.masterport) + " -m " + str (args.map) + " -r " + str (args.reduce) + " " + args.datafile + " &> " + hosts[0].name + ".out &\n"
+        cmds.write (cmd_str)
 
         #  next create the command for the map workers
         for i in range (args.map):

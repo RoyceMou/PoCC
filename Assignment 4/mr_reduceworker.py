@@ -95,17 +95,15 @@ class MR_Reduce ():
 
         # our contents will be a list of list. Each internal list could have
         # one or more entries for a given unique plug
-        for items in contents:
-            sum = 0
-            numItems = 0
-            for i in range(len(items)):
-                sum = sum + items[i][1]
-                numItems += 1
 
-            # The [0]'th entry of each of the entries of the second level
-            # list is the unique word. We just use the first one and dump it
-            # into our results file.
-            reduce_file.write (items[0][0] + ", " + str(sum/numItems) + "\n")
+        # Note, each reduce job gets a list of lists. We need to sum up for each
+        # internal list. The list of lists appears as the param arg['data']
+        # Note that each second level list here is the list of entries for a given
+        # unique key.
+        for list_per_key in contents:
+            # The i_th list represents a unique key and one or more entries
+            result = sum(float(lpk[4]) for lpk in list_per_key) / sum(float(lpk[5]) for lpk in list_per_key)
+            reduce_file.write(','.join(list_per_key[0][:4] + [str(result)]) + '\n')
 
         reduce_file.close ()
 
