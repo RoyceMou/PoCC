@@ -30,11 +30,11 @@ class SampleRecommender {
         //Note - change this to correct filepath
         HashMap<Integer,String> movieMap = mapMovieToID("movies.csv");
         do {
-            System.out.print("What user id would you like recomendations for?");
+            System.out.print("What user id would you like recomendations for? ");
             Scanner scan = new Scanner(System.in);
             int userID=scan.nextInt();
 
-            System.out.print("How many recommendations would you like?");
+            System.out.print("How many recommendations would you like? ");
             int numRecommendations=scan.nextInt();
 
             List recommendations = recommender.recommend(userID, numRecommendations);
@@ -46,7 +46,7 @@ class SampleRecommender {
                 System.out.println(movieMap.get(Integer.parseInt(movieID)) + ", rating: " + rating);
             }
 
-            System.out.print("Do you want to continue? (y/n)");
+            System.out.print("Do you want to continue? (y/n) ");
             String continueString = scan.next();
             wantToContinue = continueString.equals("y") || continueString.equals("Y");
         } while (wantToContinue);
