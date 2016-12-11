@@ -28,7 +28,7 @@ class SampleRecommender {
 
         Boolean wantToContinue = true;
         //Note - change this to correct filepath
-        HashMap<int,String> movieMap = mapMovieToID("movies.csv");
+        HashMap<Integer,String> movieMap = mapMovieToID("movies.csv");
         do {
             System.out.print("What user id would you like recomendations for?");
             Scanner scan = new Scanner(System.in);
@@ -39,7 +39,7 @@ class SampleRecommender {
 
             List recommendations = recommender.recommend(userID, numRecommendations);
             for (Object recommendation : recommendations) {
-                System.out.println(movieMap.get(recommendation));
+                System.out.println(recommendation.toString());
             }
 
             System.out.print("Do you want to continue? (y/n)");
@@ -49,8 +49,8 @@ class SampleRecommender {
 
     }
 
-    public static HashMap<int,String> mapMovieToID(String csvFile) {
-        HashMap<int,String> map = new HashMap<int,String>;
+    public static HashMap<Integer,String> mapMovieToID(String csvFile) {
+        HashMap<Integer,String> map = new HashMap<Integer,String>();
         BufferedReader br = null;
         String line = "";
         String cvsSplitBy = ",";
@@ -62,8 +62,7 @@ class SampleRecommender {
 
                 // use comma as separator
                 String[] lineData = line.split(cvsSplitBy);
-
-                map.put(lineData[0].toInt(),lineData[1]);
+                map.put(Integer.parseInt(lineData[0]),lineData[1]);
 
             }
 
