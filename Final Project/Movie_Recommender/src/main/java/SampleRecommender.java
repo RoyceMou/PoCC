@@ -39,7 +39,10 @@ class SampleRecommender {
 
             List recommendations = recommender.recommend(userID, numRecommendations);
             for (Object recommendation : recommendations) {
-                System.out.println(recommendation.toString());
+                String recommendationString = recommendation.toString();
+                String movieID = recommendationString.substring(21,Str.indexOf(','));
+                String rating = recommendationString.substring(Str.indexOf(',') + 8,Str.indexOf(',') + 8);
+                System.out.println(map.get(Integer.parseInt(movieID)) + ", rating: " + rating);
             }
 
             System.out.print("Do you want to continue? (y/n)");
