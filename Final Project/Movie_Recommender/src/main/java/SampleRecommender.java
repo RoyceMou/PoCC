@@ -40,8 +40,9 @@ class SampleRecommender {
             List recommendations = recommender.recommend(userID, numRecommendations);
             for (Object recommendation : recommendations) {
                 String recommendationString = recommendation.toString();
-                String movieID = recommendationString.substring(21,recommendationString.indexOf(','));
-                String rating = recommendationString.substring(recommendationString.indexOf(',') + 8,recommendationString.indexOf(',') + 11);
+                int splitIndex = recommendationString.indexOf(',');
+                String movieID = recommendationString.substring(21,splitIndex);
+                String rating = recommendationString.substring(splitIndex + 8,splitIndex + 11);
                 System.out.println(movieMap.get(Integer.parseInt(movieID)) + ", rating: " + rating);
             }
 
@@ -53,30 +54,27 @@ class SampleRecommender {
     }
 
     public static HashMap<Integer,String> mapMovieToID(String csvFile) {
-        HashMap<Integer,String> map = new HashMap<Integer,String>();
-        BufferedReader br = null;
         String line = "";
-        String cvsSplitBy = ",";
-
+        BufferedReader reader = null;
         try {
 
-            br = new BufferedReader(new FileReader(csvFile));
-            while ((line = br.readLine()) != null) {
+            reader = new BufferedReader(new FileReader(csvFile));
+            while ((line = reader.readLine()) != null) {
 
                 // use comma as separator
-                String[] lineData = line.split(cvsSplitBy);
+                String[] lineData = line.split(",");
                 map.put(Integer.parseInt(lineData[0]),lineData[1]);
 
             }
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         } finally {
-            if (br != null) {
+            if (reader != null) {
                 try {
-                    br.close();
+                    reader.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
