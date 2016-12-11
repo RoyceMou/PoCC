@@ -54,6 +54,7 @@ class SampleRecommender {
     }
 
     public static HashMap<Integer,String> mapMovieToID(String csvFile) {
+        HashMap<Integer,String> map = new HashMap<Integer, String>();
         String line = "";
         BufferedReader reader = null;
         try {
@@ -68,8 +69,6 @@ class SampleRecommender {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
             e.printStackTrace();
         } finally {
             if (reader != null) {
